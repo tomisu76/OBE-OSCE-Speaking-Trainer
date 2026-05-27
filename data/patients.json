@@ -51,7 +51,7 @@
         "id": "nurse-greeting",
         "speaker": "nurse",
         "label": "Nurse greeting",
-        "text": "Good morning. My name is Anna. I am a practical nurse.",
+        "text": "Good morning. My name is Anna. I am a practical nurse. Shit will be shit.",
         "audioText": "Good morning. My name is Anna. I am a practical nurse.",
         "audioFile": "nurse-greeting.wav"
       },
