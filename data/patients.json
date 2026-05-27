@@ -56,6 +56,14 @@
         "audioFile": "nurse-greeting.wav"
       },
       {
+        "id": "new-slide-3",
+        "speaker": "nurse",
+        "label": "New slide",
+        "text": "shit will be shit",
+        "audioText": "shit will be shit",
+        "audioFile": "new-slide-3.wav"
+      },
+      {
         "id": "new-slide",
         "speaker": "patient",
         "label": "New slide",
