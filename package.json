@@ -7,6 +7,14 @@
     "normalize": "node scripts/normalize_patient_texts.mjs",
     "manifest": "node scripts/extract_audio_manifest.mjs",
     "audio:test": "python scripts/generate_audio.py --limit 5 --overwrite",
-    "audio:all": "python scripts/generate_audio.py --overwrite"
+    "audio:all": "python scripts/generate_audio.py --overwrite",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.54.0",
+    "http-server": "^14.1.1",
+    "typescript": "^5.6.3"
   }
 }
