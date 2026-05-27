@@ -58,7 +58,10 @@ test('student Play Audio on non-intro slide does not call intro.wav', async ({ p
 
 test('editor Play this slide audio follows selected #editorSlide value', async ({ page }) => {
   await page.getByRole('button', { name: 'Admin editor' }).click();
-  await expect(page.getByRole('heading', { name: 'Admin slide editor' })).toBeVisible();
+  await expect(page.locator('#editor')).toHaveClass(/show/);
+  await expect(page.locator('.studio-title')).toContainText('OBE OSCE Slide Studio');
+  await expect(page.locator('#editorSlide')).toBeVisible();
+  await expect(page.locator('#studioPlayCurrentAudio')).toBeVisible();
 
   await page.selectOption('#editorSlide', '2');
   await page.locator('#editorSlide').dispatchEvent('change');
@@ -71,4 +74,5 @@ test('editor Play this slide audio follows selected #editorSlide value', async (
   const audioCalls = await page.evaluate(() => (window as any).__audioCalls as string[]);
   const latest = audioCalls[audioCalls.length - 1] || '';
   expect(latest).toContain(expectedAudioFile);
+  expect(latest).not.toContain('intro.wav');
 });
