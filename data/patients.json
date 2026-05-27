@@ -75,8 +75,8 @@
         "id": "new-slide-2",
         "speaker": "nurse",
         "label": "New slide",
-        "text": "This is testing slide. we need to know how to sound generated. Bye",
-        "audioText": "This is testing slide. we need to know how to sound generated. Bye",
+        "text": "Bye",
+        "audioText": "Bye",
         "audioFile": "new-slide-2.wav"
       },
       {
