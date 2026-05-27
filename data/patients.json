@@ -67,8 +67,8 @@
         "id": "new-slide",
         "speaker": "patient",
         "label": "New slide",
-        "text": "The agent can click, scroll, type, and navigate web pages automatically. While working, it displays an overlay showing its progress and provides controls to stop execution if you need to intervene.",
-        "audioText": "The agent can click, scroll, type, and navigate web pages automatically. While working, it displays an overlay showing its progress and provides controls to stop execution if you need to intervene.",
+        "text": "hi",
+        "audioText": "hi",
         "audioFile": "new-slide.wav"
       },
       {
