@@ -17,6 +17,9 @@ permissions:
 
 jobs:
   generate-audio:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.head_commit.message != 'Update patient text'
     runs-on: ubuntu-latest
     timeout-minutes: 45
 

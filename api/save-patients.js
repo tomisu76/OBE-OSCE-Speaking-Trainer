@@ -122,30 +122,14 @@ export default async function handler(request, response) {
     });
   }
 
-  let workflowStarted = false;
-  if (regenerateAudio) {
-    const workflowResponse = await fetch(`${apiBase}/actions/workflows/generate-audio.yml/dispatches`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({ ref: 'main' })
-    });
-
-    if (!workflowResponse.ok) {
-      const details = await workflowResponse.text();
-      const message = workflowResponse.status === 404
-        ? 'Patients saved, but audio workflow could not start. Check that GITHUB_WORKFLOW_TOKEN has Actions: Read and write permission.'
-        : 'Patients saved, but audio workflow could not start.';
-      return response.status(workflowResponse.status).json({ ok: false, message, details });
-    }
-    workflowStarted = true;
-  }
+  const workflowStarted = regenerateAudio;
 
   return response.status(200).json({
     ok: true,
     workflowStarted,
     saveAttempt: saveResult.attempt,
     message: workflowStarted
-      ? 'Saved. New Kokoro audio generation started. Old files will be overwritten after GitHub Actions finishes.'
+      ? 'Saved. Audio regeneration was requested. GitHub Actions push trigger will start one run.'
       : 'Saved. Audio was not regenerated.'
   });
 }
