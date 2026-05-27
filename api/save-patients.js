@@ -1,3 +1,57 @@
+async function readCurrentFileSha(apiBase, path, headers) {
+  const currentFileResponse = await fetch(`${apiBase}/contents/${path}?ref=main&ts=${Date.now()}`, { headers });
+
+  if (currentFileResponse.ok) {
+    const currentFile = await currentFileResponse.json();
+    return currentFile.sha;
+  }
+
+  if (currentFileResponse.status === 404) return null;
+
+  const details = await currentFileResponse.text();
+  const error = new Error('Could not read current patients file. Check that GITHUB_WORKFLOW_TOKEN has Contents: Read and write permission.');
+  error.status = currentFileResponse.status;
+  error.details = details;
+  throw error;
+}
+
+async function savePatientsFileWithRetry({ apiBase, path, headers, saveBodyBase }) {
+  let lastDetails = '';
+
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    const currentSha = await readCurrentFileSha(apiBase, path, headers);
+    const saveBody = { ...saveBodyBase };
+    if (currentSha) saveBody.sha = currentSha;
+
+    const saveResponse = await fetch(`${apiBase}/contents/${path}`, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify(saveBody)
+    });
+
+    if (saveResponse.ok) return { ok: true, attempt };
+
+    lastDetails = await saveResponse.text();
+
+    if (saveResponse.status !== 409) {
+      const message = saveResponse.status === 404
+        ? 'Could not save patients file. The GitHub token probably cannot access tomisu76/OBE-OSCE-Speaking-Trainer, or it does not have Contents: Read and write permission.'
+        : 'Could not save patients file.';
+      const error = new Error(message);
+      error.status = saveResponse.status;
+      error.details = lastDetails;
+      throw error;
+    }
+
+    await new Promise(resolve => setTimeout(resolve, 450 * attempt));
+  }
+
+  const conflictError = new Error('Could not save patients file because GitHub still reports a version conflict. Refresh the page to load the latest patient file, then save again.');
+  conflictError.status = 409;
+  conflictError.details = lastDetails;
+  throw conflictError;
+}
+
 export default async function handler(request, response) {
   if (request.method !== 'POST') {
     response.setHeader('Allow', 'POST');
@@ -51,41 +105,21 @@ export default async function handler(request, response) {
   const content = JSON.stringify(patients, null, 2) + '\n';
   const encodedContent = Buffer.from(content, 'utf8').toString('base64');
 
-  let currentSha = null;
-  const currentFileResponse = await fetch(`${apiBase}/contents/${path}?ref=main`, { headers });
-
-  if (currentFileResponse.ok) {
-    const currentFile = await currentFileResponse.json();
-    currentSha = currentFile.sha;
-  } else if (currentFileResponse.status !== 404) {
-    const details = await currentFileResponse.text();
-    return response.status(currentFileResponse.status).json({
-      ok: false,
-      message: 'Could not read current patients file. Check that GITHUB_WORKFLOW_TOKEN has Contents: Read and write permission.',
-      details
-    });
-  }
-
-  const saveBody = {
+  const saveBodyBase = {
     message: regenerateAudio ? 'Update patient text and regenerate audio' : 'Update patient text',
     content: encodedContent,
     branch: 'main'
   };
 
-  if (currentSha) saveBody.sha = currentSha;
-
-  const saveResponse = await fetch(`${apiBase}/contents/${path}`, {
-    method: 'PUT',
-    headers,
-    body: JSON.stringify(saveBody)
-  });
-
-  if (!saveResponse.ok) {
-    const details = await saveResponse.text();
-    const message = saveResponse.status === 404
-      ? 'Could not save patients file. The GitHub token probably cannot access tomisu76/OBE-OSCE-Speaking-Trainer, or it does not have Contents: Read and write permission.'
-      : 'Could not save patients file.';
-    return response.status(saveResponse.status).json({ ok: false, message, details });
+  let saveResult;
+  try {
+    saveResult = await savePatientsFileWithRetry({ apiBase, path, headers, saveBodyBase });
+  } catch (error) {
+    return response.status(error.status || 500).json({
+      ok: false,
+      message: error.message || 'Could not save patients file.',
+      details: error.details || ''
+    });
   }
 
   let workflowStarted = false;
@@ -109,6 +143,7 @@ export default async function handler(request, response) {
   return response.status(200).json({
     ok: true,
     workflowStarted,
+    saveAttempt: saveResult.attempt,
     message: workflowStarted
       ? 'Saved. New Kokoro audio generation started. Old files will be overwritten after GitHub Actions finishes.'
       : 'Saved. Audio was not regenerated.'
