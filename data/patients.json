@@ -67,7 +67,7 @@
         "id": "new-slide-2",
         "speaker": "nurse",
         "label": "New slide",
-        "text": "New slide text.",
+        "text": "This is testing slide. we need to know how to sound generated. Bye",
         "audioText": "This is testing slide. we need to know how to sound generated. Bye",
         "audioFile": "new-slide-2.wav"
       },
