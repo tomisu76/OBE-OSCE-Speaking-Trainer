@@ -59,7 +59,7 @@
         "id": "patient-greeting",
         "speaker": "patient",
         "label": "Patient greeting",
-        "text": "Good morning.",
+        "text": "Good morning. may i see doctor please?",
         "audioText": "Good morning.",
         "audioFile": "patient-greeting.wav"
       },
