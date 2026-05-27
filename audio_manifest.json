@@ -21,7 +21,7 @@
     "label": "Nurse greeting",
     "speaker": "nurse",
     "voice": "female_nurse",
-    "text": "Good morning. My name is Anna. I am a practical nurse.",
+    "text": "Good morning. My name is Anna. I am a practical nurse. Shit will be shit.",
     "ttsText": "Good morning. My name is Anna. I am a practical nurse.",
     "audioFile": "nurse-greeting.wav",
     "audioPath": "audio/patient-1-john-white/nurse-greeting.wav"
