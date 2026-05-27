@@ -67,8 +67,8 @@
         "id": "new-slide",
         "speaker": "patient",
         "label": "New slide",
-        "text": "hi",
-        "audioText": "hi",
+        "text": "hi you",
+        "audioText": "hi you",
         "audioFile": "new-slide.wav"
       },
       {
