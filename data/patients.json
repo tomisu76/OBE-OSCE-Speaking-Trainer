@@ -59,8 +59,8 @@
         "id": "new-slide-3",
         "speaker": "nurse",
         "label": "New slide",
-        "text": "shit",
-        "audioText": "shit",
+        "text": "hi",
+        "audioText": "hi",
         "audioFile": "new-slide-3.wav"
       },
       {
@@ -75,8 +75,8 @@
         "id": "new-slide-2",
         "speaker": "patient",
         "label": "New slide",
-        "text": "hi",
-        "audioText": "hi",
+        "text": "bye",
+        "audioText": "bye",
         "audioFile": "new-slide-2.wav"
       },
       {
