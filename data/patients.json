@@ -75,8 +75,8 @@
         "id": "new-slide-2",
         "speaker": "nurse",
         "label": "New slide",
-        "text": "hi",
-        "audioText": "hi",
+        "text": "bye",
+        "audioText": "bye",
         "audioFile": "new-slide-2.wav"
       },
       {
