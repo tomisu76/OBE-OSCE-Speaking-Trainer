@@ -35,8 +35,8 @@
     "label": "New slide",
     "speaker": "patient",
     "voice": "male_patient",
-    "text": "shit will be shit you shit. good morning all shits, today we will shit.",
-    "ttsText": "shit will be shit you shit. good morning all shits, today we will shit.",
+    "text": "shit will be shit you shit. good morning all shits, today we will shit.g sg gfd",
+    "ttsText": "shit will be shit you shit. good morning all shits, today we will shit. sgsdfgsdf",
     "audioFile": "new-slide-3.wav",
     "audioPath": "audio/patient-1-john-white/new-slide-3.wav"
   },
@@ -49,8 +49,8 @@
     "label": "New slide",
     "speaker": "patient",
     "voice": "male_patient",
-    "text": "The agent can click, scroll, type, and navigate web pages automatically. While working, it displays an overlay showing its progress and provides controls to stop execution if you need to intervene.",
-    "ttsText": "The agent can click, scroll, type, and navigate web pages automatically. While working, it displays an overlay showing its progress and provides controls to stop execution if you need to intervene.",
+    "text": "hi you",
+    "ttsText": "hi you",
     "audioFile": "new-slide.wav",
     "audioPath": "audio/patient-1-john-white/new-slide.wav"
   },
