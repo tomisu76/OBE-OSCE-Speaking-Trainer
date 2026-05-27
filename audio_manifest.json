@@ -64,7 +64,7 @@
     "speaker": "patient",
     "voice": "male_patient",
     "text": "Good morning. may i see doctor please?",
-    "ttsText": "Good morning. may i see doctor please?",
+    "ttsText": "Good morning. may i see doctor please? Simply return to your Antigravity conversation, and the browser will be used automatically when appropriate.",
     "audioFile": "patient-greeting.wav",
     "audioPath": "audio/patient-1-john-white/patient-greeting.wav"
   },
