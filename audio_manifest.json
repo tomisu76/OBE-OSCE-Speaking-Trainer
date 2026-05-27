@@ -21,8 +21,8 @@
     "label": "Nurse greeting",
     "speaker": "nurse",
     "voice": "female_nurse",
-    "text": "Good morning. My name is _____. I am a practical nurse.",
-    "ttsText": "Good morning. My name is blank. I am a practical nurse.",
+    "text": "Good morning. My name is Anna. I am a practical nurse.",
+    "ttsText": "Good morning. My name is Anna. I am a practical nurse.",
     "audioFile": "nurse-greeting.wav",
     "audioPath": "audio/patient-1-john-white/nurse-greeting.wav"
   },
@@ -36,7 +36,7 @@
     "speaker": "patient",
     "voice": "male_patient",
     "text": "Good morning. may i see doctor please?",
-    "ttsText": "Good morning.",
+    "ttsText": "Good morning. may i see doctor please?",
     "audioFile": "patient-greeting.wav",
     "audioPath": "audio/patient-1-john-white/patient-greeting.wav"
   },
