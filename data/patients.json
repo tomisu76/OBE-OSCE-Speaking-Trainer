@@ -57,10 +57,10 @@
       },
       {
         "id": "new-slide",
-        "speaker": "nurse",
+        "speaker": "patient",
         "label": "New slide",
-        "text": "helloo fasdfasdfasgfasdgh",
-        "audioText": "helloo fasdfasdfasgfasdgh",
+        "text": "The agent can click, scroll, type, and navigate web pages automatically. While working, it displays an overlay showing its progress and provides controls to stop execution if you need to intervene.",
+        "audioText": "The agent can click, scroll, type, and navigate web pages automatically. While working, it displays an overlay showing its progress and provides controls to stop execution if you need to intervene.",
         "audioFile": "new-slide.wav"
       },
       {
