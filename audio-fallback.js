@@ -1,5 +1,5 @@
 (() => {
-  const FALLBACK_VERSION = 'audio-fallback-20260527a';
+  const FALLBACK_VERSION = 'audio-fallback-20260527b';
   const PLAY_FULL_TEXT = '▶ Play full presentation';
   const STOP_TEXT = '⏸ Stop';
   let fallbackAudio = null;
@@ -15,6 +15,15 @@
     const div = document.createElement('div');
     div.innerHTML = String(value || '');
     return (div.textContent || div.innerText || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function getVisibleSlideText() {
+    const activeSlide = document.querySelector('.fs-slide.active .fs-line');
+    if (!activeSlide) return '';
+    const clone = activeSlide.cloneNode(true);
+    clone.querySelector('.speaker')?.remove();
+    clone.querySelector('.slide-audio-btn')?.remove();
+    return stripHtml(clone.innerHTML);
   }
 
   function slugify(value) {
@@ -56,7 +65,7 @@
     const file = slideIndex === 0
       ? (patient.introAudioFile || 'intro.wav')
       : (line?.audioFile || `slide-${String(slideIndex).padStart(3, '0')}.wav`);
-    return `/audio/${folder}/${file}?v=${FALLBACK_VERSION}`;
+    return `/audio/${folder}/${file}?v=${FALLBACK_VERSION}&ts=${Date.now()}`;
   }
 
   function getFallbackText(slideIndex = getActiveSlideIndex()) {
@@ -66,7 +75,8 @@
       return patient.introAudioText || `Patient ${patient.id}. ${patient.name}. ${patient.scenario || ''}`;
     }
     const line = getLine(patient, slideIndex);
-    return line?.audioText || stripHtml(line?.text || '');
+    const visibleText = getVisibleSlideText();
+    return visibleText || line?.audioText || stripHtml(line?.text || '');
   }
 
   function getFallbackSpeaker(slideIndex = getActiveSlideIndex()) {
@@ -159,8 +169,9 @@
       speakFallback(fallbackText, speaker, onEnded);
     };
 
-    fallbackAudio.play().catch(() => {
+    fallbackAudio.play().catch(error => {
       fallbackAudio = null;
+      console.warn('WAV blocked or failed, using browser voice fallback:', error);
       speakFallback(fallbackText, speaker, onEnded);
     });
   }
