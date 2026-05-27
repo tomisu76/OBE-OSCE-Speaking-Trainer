@@ -49,7 +49,7 @@
     "label": "Ask patient name",
     "speaker": "nurse",
     "voice": "female_nurse",
-    "text": "May I ask your name, please?",
+    "text": "May I ask your name, please? or should i go",
     "ttsText": "May I ask your name, please?",
     "audioFile": "ask-name.wav",
     "audioPath": "audio/patient-1-john-white/ask-name.wav"
