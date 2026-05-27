@@ -1,14 +1,30 @@
 (() => {
-  const FALLBACK_VERSION = 'audio-fallback-20260527b';
+  const FALLBACK_VERSION = 'audio-fallback-20260527c';
   const PLAY_FULL_TEXT = '▶ Play full presentation';
   const STOP_TEXT = '⏸ Stop';
   let fallbackAudio = null;
   let fallbackAutoPlay = false;
 
+  function allSlides() {
+    return Array.from(document.querySelectorAll('.fs-slide'));
+  }
+
+  function getSlideIndexFromButton(button) {
+    const slide = button?.closest?.('.fs-slide');
+    if (!slide) return -1;
+    return allSlides().indexOf(slide);
+  }
+
   function getActiveSlideIndex() {
-    const slides = Array.from(document.querySelectorAll('.fs-slide'));
-    const index = slides.findIndex(slide => slide.classList.contains('active'));
-    return index >= 0 ? index : 0;
+    const slides = allSlides();
+    const activeIndex = slides.findIndex(slide => slide.classList.contains('active'));
+    if (activeIndex >= 0) return activeIndex;
+
+    const counter = document.getElementById('slideCounter')?.textContent || '';
+    const match = counter.match(/(\d+)\s*\/\s*\d+/);
+    if (match) return Math.max(0, Number(match[1]) - 1);
+
+    return 0;
   }
 
   function stripHtml(value) {
@@ -17,10 +33,11 @@
     return (div.textContent || div.innerText || '').replace(/\s+/g, ' ').trim();
   }
 
-  function getVisibleSlideText() {
-    const activeSlide = document.querySelector('.fs-slide.active .fs-line');
-    if (!activeSlide) return '';
-    const clone = activeSlide.cloneNode(true);
+  function getVisibleSlideText(slideIndex = getActiveSlideIndex()) {
+    const slide = allSlides()[slideIndex];
+    const line = slide?.querySelector('.fs-line');
+    if (!line) return '';
+    const clone = line.cloneNode(true);
     clone.querySelector('.speaker')?.remove();
     clone.querySelector('.slide-audio-btn')?.remove();
     return stripHtml(clone.innerHTML);
@@ -75,7 +92,7 @@
       return patient.introAudioText || `Patient ${patient.id}. ${patient.name}. ${patient.scenario || ''}`;
     }
     const line = getLine(patient, slideIndex);
-    const visibleText = getVisibleSlideText();
+    const visibleText = getVisibleSlideText(slideIndex);
     return visibleText || line?.audioText || stripHtml(line?.text || '');
   }
 
@@ -101,18 +118,18 @@
     }
   }
 
-  function setSlideAudioButton(text, isWarning = false) {
-    const activeSlide = document.querySelector('.fs-slide.active');
-    const button = activeSlide?.querySelector('.slide-audio-btn');
+  function setSlideAudioButton(text, isWarning = false, slideIndex = getActiveSlideIndex()) {
+    const slide = allSlides()[slideIndex] || document.querySelector('.fs-slide.active');
+    const button = slide?.querySelector('.slide-audio-btn');
     if (!button) return;
     button.textContent = text;
     button.classList.toggle('audio-missing', Boolean(isWarning));
   }
 
-  function speakFallback(text, speaker, onEnded) {
+  function speakFallback(text, speaker, onEnded, slideIndex) {
     const cleanText = String(text || '').replace(/\s+/g, ' ').trim();
     if (!cleanText || !('speechSynthesis' in window)) {
-      setSlideAudioButton('Audio missing. Generate WAV audio.', true);
+      setSlideAudioButton('Audio missing. Generate WAV audio.', true, slideIndex);
       if (typeof onEnded === 'function') setTimeout(onEnded, 300);
       return;
     }
@@ -128,21 +145,20 @@
     const preferred = voices.find(v => /English|United States|US/i.test(`${v.name} ${v.lang}`));
     if (preferred) utterance.voice = preferred;
 
-    utterance.onstart = () => setSlideAudioButton('▶ Browser voice fallback playing');
+    utterance.onstart = () => setSlideAudioButton('▶ Browser voice fallback playing', false, slideIndex);
     utterance.onend = () => {
-      setSlideAudioButton('▶ Play Audio');
+      setSlideAudioButton('▶ Play Audio', false, slideIndex);
       if (typeof onEnded === 'function') onEnded();
     };
     utterance.onerror = () => {
-      setSlideAudioButton('Audio missing. Generate WAV audio.', true);
+      setSlideAudioButton('Audio missing. Generate WAV audio.', true, slideIndex);
       if (typeof onEnded === 'function') setTimeout(onEnded, 300);
     };
 
     window.speechSynthesis.speak(utterance);
   }
 
-  function playWithFallback(onEnded) {
-    const slideIndex = getActiveSlideIndex();
+  function playWithFallback(slideIndex = getActiveSlideIndex(), onEnded) {
     const path = getAudioPath(slideIndex);
     const fallbackText = getFallbackText(slideIndex);
     const speaker = getFallbackSpeaker(slideIndex);
@@ -151,35 +167,46 @@
     stopFallbackAudio();
 
     if (!path) {
-      speakFallback(fallbackText, speaker, onEnded);
+      speakFallback(fallbackText, speaker, onEnded, slideIndex);
       return;
     }
 
     fallbackAudio = new Audio(path);
     fallbackAudio.preload = 'auto';
-    fallbackAudio.onplaying = () => setSlideAudioButton('▶ WAV audio playing');
+    fallbackAudio.onplaying = () => setSlideAudioButton('▶ WAV audio playing', false, slideIndex);
     fallbackAudio.onended = () => {
       fallbackAudio = null;
-      setSlideAudioButton('▶ Play Audio');
+      setSlideAudioButton('▶ Play Audio', false, slideIndex);
       if (fromAutoPlay) onEnded();
     };
     fallbackAudio.onerror = () => {
       fallbackAudio = null;
       console.warn('WAV missing, using browser voice fallback:', path);
-      speakFallback(fallbackText, speaker, onEnded);
+      speakFallback(fallbackText, speaker, onEnded, slideIndex);
     };
 
     fallbackAudio.play().catch(error => {
       fallbackAudio = null;
       console.warn('WAV blocked or failed, using browser voice fallback:', error);
-      speakFallback(fallbackText, speaker, onEnded);
+      speakFallback(fallbackText, speaker, onEnded, slideIndex);
     });
   }
 
   window.playCurrentAudio = function playCurrentAudioWithFallback(onEnded) {
     if (fallbackAutoPlay && typeof onEnded !== 'function') return;
-    playWithFallback(onEnded);
+    playWithFallback(getActiveSlideIndex(), onEnded);
   };
+
+  document.addEventListener('click', event => {
+    const button = event.target.closest?.('.fs-slide .slide-audio-btn');
+    if (!button) return;
+    const clickedIndex = getSlideIndexFromButton(button);
+    if (clickedIndex < 0) return;
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    playWithFallback(clickedIndex);
+  }, true);
 
   window.togglePresentationPlayback = function togglePresentationPlaybackWithFallback() {
     if (fallbackAutoPlay) {
@@ -194,9 +221,9 @@
 
     const playThenAdvance = () => {
       if (!fallbackAutoPlay) return;
-      const slides = Array.from(document.querySelectorAll('.fs-slide'));
+      const slides = allSlides();
       const currentIndex = getActiveSlideIndex();
-      playWithFallback(() => {
+      playWithFallback(currentIndex, () => {
         if (!fallbackAutoPlay) return;
         if (currentIndex >= slides.length - 1) {
           fallbackAutoPlay = false;
