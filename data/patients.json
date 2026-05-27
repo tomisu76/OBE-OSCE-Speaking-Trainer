@@ -5,37 +5,137 @@
     "audioFolder": "patient-1-john-white",
     "course": "English for Professional Nursing",
     "week": "OSCE Speaking Practice",
-    "clo": ["CLO2", "CLO3"],
+    "clo": [
+      "CLO2",
+      "CLO3"
+    ],
     "skill": "Taking history, vital signs, and giving directions",
     "assessment": "Mini-OSCE speaking practice",
     "scenario": "Broken arm after an accident three hours ago.",
     "introAudioText": "Patient 1. John White. Broken arm after an accident three hours ago.",
     "vitals": [
-      ["Blood pressure", "126/82", "one hundred twenty-six over eighty-two", "millimeters of mercury"],
-      ["Respiratory rate", "18", "eighteen", "breaths per minute"],
-      ["Pulse rate", "86", "eighty-six", "beats per minute"],
-      ["Body temperature", "36.9", "thirty-six point nine", "degrees Celsius"],
-      ["Oxygen saturation", "98", "ninety-eight", "percent"]
+      [
+        "Blood pressure",
+        "126/82",
+        "one hundred twenty-six over eighty-two",
+        "millimeters of mercury"
+      ],
+      [
+        "Respiratory rate",
+        "18",
+        "eighteen",
+        "breaths per minute"
+      ],
+      [
+        "Pulse rate",
+        "86",
+        "eighty-six",
+        "beats per minute"
+      ],
+      [
+        "Body temperature",
+        "36.9",
+        "thirty-six point nine",
+        "degrees Celsius"
+      ],
+      [
+        "Oxygen saturation",
+        "98",
+        "ninety-eight",
+        "percent"
+      ]
     ],
     "lines": [
-      ["nurse", "Good morning. My name is _____. I am a practical nurse.", "Good morning. My name is blank. I am a practical nurse."],
-      ["patient", "Good morning.", "Good morning."],
-      ["nurse", "May I ask your name, please?", "May I ask your name, please?"],
-      ["patient", "My name is John White.", "My name is John White."],
-      ["nurse", "What symptoms do you have?", "What symptoms do you have?"],
-      ["patient", "I have a broken arm.", "I have a broken arm."],
-      ["nurse", "When did it happen?", "When did it happen?"],
-      ["patient", "It happened three hours ago.", "It happened three hours ago."],
-      ["nurse", "Do you have any allergies?", "Do you have any allergies?"],
-      ["patient", "Yes, I am allergic to paracetamol.", "Yes, I am allergic to paracetamol."],
-      ["nurse", "May I check your vital signs now?", "May I check your vital signs now?"],
-      ["patient", "Yes, please.", "Yes, please."],
-      ["nurse", "Your <span class=\"vital-tag\">Blood pressure</span> is 126/82 millimeters of mercury.", "Your blood pressure is one hundred twenty-six over eighty-two millimeters of mercury."],
-      ["nurse", "Your <span class=\"vital-tag\">Respiratory rate</span> is 18 breaths per minute.", "Your respiratory rate is eighteen breaths per minute."],
-      ["nurse", "Your <span class=\"vital-tag\">Pulse rate</span> is 86 beats per minute.", "Your pulse rate is eighty-six beats per minute."],
-      ["nurse", "The X-ray room is on the second floor. Please wait for the doctor.", "The X-ray room is on the second floor. Please wait for the doctor."],
-      ["patient", "Thank you.", "Thank you."],
-      ["nurse", "You are welcome. Have a good day.", "You are welcome. Have a good day."]
+      [
+        "nurse",
+        "Good morning. My name is _____. I am a practical nurse.",
+        "Good morning. My name is blank. I am a practical nurse."
+      ],
+      [
+        "patient",
+        "Good morning.",
+        "Good morning."
+      ],
+      [
+        "nurse",
+        "May I ask your name, please?",
+        "May I ask your name, please?"
+      ],
+      [
+        "patient",
+        "My name is John White.",
+        "My name is John White."
+      ],
+      [
+        "nurse",
+        "What symptoms do you have?",
+        "What symptoms do you have?"
+      ],
+      [
+        "patient",
+        "I have a broken arm.",
+        "I have a broken arm."
+      ],
+      [
+        "nurse",
+        "When did it happen?",
+        "When did it happen?"
+      ],
+      [
+        "patient",
+        "It happened three hours ago.",
+        "It happened three hours ago."
+      ],
+      [
+        "nurse",
+        "Do you have any allergies?",
+        "Do you have any allergies?"
+      ],
+      [
+        "patient",
+        "Yes, I am allergic to paracetamol.",
+        "Yes, I am allergic to paracetamol."
+      ],
+      [
+        "nurse",
+        "May I check your vital signs now?",
+        "May I check your vital signs now?"
+      ],
+      [
+        "patient",
+        "Yes, please.",
+        "Yes, please."
+      ],
+      [
+        "nurse",
+        "Your <span class=\"vital-tag\">Blood pressure</span> is 126/82 millimeters of mercury.",
+        "Your blood pressure is one hundred twenty-six over eighty-two millimeters of mercury."
+      ],
+      [
+        "nurse",
+        "Your <span class=\"vital-tag\">Respiratory rate</span> is 18 breaths per minute.",
+        "Your respiratory rate is eighteen breaths per minute."
+      ],
+      [
+        "nurse",
+        "Your <span class=\"vital-tag\">Pulse rate</span> is 86 beats per minute.",
+        "Your pulse rate is eighty-six beats per minute."
+      ],
+      [
+        "nurse",
+        "The X-ray room is on the second floor. Please wait for the doctor.",
+        "The X-ray room is on the second floor. Please wait for the doctor."
+      ],
+      [
+        "patient",
+        "Thank you.",
+        "Thank you."
+      ],
+      [
+        "nurse",
+        "You are welcome. Have a good day.",
+        "You are welcome. Have a good day."
+      ]
     ]
   },
   {
@@ -44,34 +144,122 @@
     "audioFolder": "patient-2-thomas-blake",
     "course": "English for Professional Nursing",
     "week": "OSCE Speaking Practice",
-    "clo": ["CLO2", "CLO3"],
+    "clo": [
+      "CLO2",
+      "CLO3"
+    ],
     "skill": "Chest pain emergency communication",
     "assessment": "Mini-OSCE speaking practice",
     "scenario": "Chest pain for two days with history of heart disease.",
     "introAudioText": "Patient 2. Thomas Blake. Chest pain for two days. History of heart disease.",
     "vitals": [
-      ["Blood pressure", "146/92", "one hundred forty-six over ninety-two", "millimeters of mercury"],
-      ["Respiratory rate", "22", "twenty-two", "breaths per minute"],
-      ["Pulse rate", "104", "one hundred four", "beats per minute"],
-      ["Body temperature", "36.8", "thirty-six point eight", "degrees Celsius"],
-      ["Oxygen saturation", "96", "ninety-six", "percent"]
+      [
+        "Blood pressure",
+        "146/92",
+        "one hundred forty-six over ninety-two",
+        "millimeters of mercury"
+      ],
+      [
+        "Respiratory rate",
+        "22",
+        "twenty-two",
+        "breaths per minute"
+      ],
+      [
+        "Pulse rate",
+        "104",
+        "one hundred four",
+        "beats per minute"
+      ],
+      [
+        "Body temperature",
+        "36.8",
+        "thirty-six point eight",
+        "degrees Celsius"
+      ],
+      [
+        "Oxygen saturation",
+        "96",
+        "ninety-six",
+        "percent"
+      ]
     ],
     "lines": [
-      ["nurse", "Good morning. My name is _____. I am a practical nurse.", "Good morning. My name is blank. I am a practical nurse."],
-      ["patient", "Good morning.", "Good morning."],
-      ["nurse", "May I ask your name, please?", "May I ask your name, please?"],
-      ["patient", "My name is Thomas Blake.", "My name is Thomas Blake."],
-      ["nurse", "What symptoms do you have?", "What symptoms do you have?"],
-      ["patient", "I have chest pain.", "I have chest pain."],
-      ["nurse", "When did the symptoms start?", "When did the symptoms start?"],
-      ["patient", "They started two days ago.", "They started two days ago."],
-      ["nurse", "Do you have any underlying diseases?", "Do you have any underlying diseases?"],
-      ["patient", "Yes, I have heart disease.", "Yes, I have heart disease."],
-      ["nurse", "This is important. I will call the doctor and check your vital signs now.", "This is important. I will call the doctor and check your vital signs now."],
-      ["nurse", "Your <span class=\"vital-tag\">Blood pressure</span> is 146/92 millimeters of mercury.", "Your blood pressure is one hundred forty-six over ninety-two millimeters of mercury."],
-      ["nurse", "Your <span class=\"vital-tag\">Pulse rate</span> is 104 beats per minute.", "Your pulse rate is one hundred four beats per minute."],
-      ["nurse", "The cardiology clinic is on the second floor. Please stay seated and try to stay calm.", "The cardiology clinic is on the second floor. Please stay seated and try to stay calm."],
-      ["patient", "Thank you.", "Thank you."]
+      [
+        "nurse",
+        "Good morning. My name is _____. I am a practical nurse.",
+        "Good morning. My name is blank. I am a practical nurse."
+      ],
+      [
+        "patient",
+        "Good morning.",
+        "Good morning."
+      ],
+      [
+        "nurse",
+        "May I ask your name, please?",
+        "May I ask your name, please?"
+      ],
+      [
+        "patient",
+        "My name is Thomas Blake.",
+        "My name is Thomas Blake."
+      ],
+      [
+        "nurse",
+        "What symptoms do you have?",
+        "What symptoms do you have?"
+      ],
+      [
+        "patient",
+        "I have chest pain.",
+        "I have chest pain."
+      ],
+      [
+        "nurse",
+        "When did the symptoms start?",
+        "When did the symptoms start?"
+      ],
+      [
+        "patient",
+        "They started two days ago.",
+        "They started two days ago."
+      ],
+      [
+        "nurse",
+        "Do you have any underlying diseases?",
+        "Do you have any underlying diseases?"
+      ],
+      [
+        "patient",
+        "Yes, I have heart disease.",
+        "Yes, I have heart disease."
+      ],
+      [
+        "nurse",
+        "This is important. I will call the doctor and check your vital signs now.",
+        "This is important. I will call the doctor and check your vital signs now."
+      ],
+      [
+        "nurse",
+        "Your <span class=\"vital-tag\">Blood pressure</span> is 146/92 millimeters of mercury.",
+        "Your blood pressure is one hundred forty-six over ninety-two millimeters of mercury."
+      ],
+      [
+        "nurse",
+        "Your <span class=\"vital-tag\">Pulse rate</span> is 104 beats per minute.",
+        "Your pulse rate is one hundred four beats per minute."
+      ],
+      [
+        "nurse",
+        "The cardiology clinic is on the second floor. Please stay seated and try to stay calm.",
+        "The cardiology clinic is on the second floor. Please stay seated and try to stay calm."
+      ],
+      [
+        "patient",
+        "Thank you.",
+        "Thank you."
+      ]
     ]
   },
   {
@@ -80,30 +268,102 @@
     "audioFolder": "patient-3-peter-brown",
     "course": "English for Professional Nursing",
     "week": "Common Diseases and Symptoms",
-    "clo": ["CLO2", "CLO3"],
+    "clo": [
+      "CLO2",
+      "CLO3"
+    ],
     "skill": "Symptom assessment and test explanation",
     "assessment": "Mini-OSCE speaking practice",
     "scenario": "Diarrhea for three days with no allergies and no underlying disease.",
     "introAudioText": "Patient 3. Peter Brown. Diarrhea for three days. No allergies and no underlying disease.",
     "vitals": [
-      ["Blood pressure", "108/70", "one hundred eight over seventy", "millimeters of mercury"],
-      ["Respiratory rate", "18", "eighteen", "breaths per minute"],
-      ["Pulse rate", "96", "ninety-six", "beats per minute"],
-      ["Body temperature", "37.6", "thirty-seven point six", "degrees Celsius"],
-      ["Oxygen saturation", "98", "ninety-eight", "percent"]
+      [
+        "Blood pressure",
+        "108/70",
+        "one hundred eight over seventy",
+        "millimeters of mercury"
+      ],
+      [
+        "Respiratory rate",
+        "18",
+        "eighteen",
+        "breaths per minute"
+      ],
+      [
+        "Pulse rate",
+        "96",
+        "ninety-six",
+        "beats per minute"
+      ],
+      [
+        "Body temperature",
+        "37.6",
+        "thirty-seven point six",
+        "degrees Celsius"
+      ],
+      [
+        "Oxygen saturation",
+        "98",
+        "ninety-eight",
+        "percent"
+      ]
     ],
     "lines": [
-      ["nurse", "Good morning. My name is _____. I am a practical nurse.", "Good morning. My name is blank. I am a practical nurse."],
-      ["patient", "Good morning.", "Good morning."],
-      ["nurse", "What symptoms do you have?", "What symptoms do you have?"],
-      ["patient", "I have diarrhea.", "I have diarrhea."],
-      ["nurse", "How long have you had diarrhea?", "How long have you had diarrhea?"],
-      ["patient", "For three days.", "For three days."],
-      ["nurse", "Do you have vomiting or abdominal pain?", "Do you have vomiting or abdominal pain?"],
-      ["patient", "Yes, I have abdominal pain, but no vomiting.", "Yes, I have abdominal pain, but no vomiting."],
-      ["nurse", "We need a stool test and a urine test to check the cause.", "We need a stool test and a urine test to check the cause."],
-      ["nurse", "Please drink small sips of water and wait for the doctor.", "Please drink small sips of water and wait for the doctor."],
-      ["patient", "Thank you.", "Thank you."]
+      [
+        "nurse",
+        "Good morning. My name is _____. I am a practical nurse.",
+        "Good morning. My name is blank. I am a practical nurse."
+      ],
+      [
+        "patient",
+        "Good morning.",
+        "Good morning."
+      ],
+      [
+        "nurse",
+        "What symptoms do you have?",
+        "What symptoms do you have?"
+      ],
+      [
+        "patient",
+        "I have diarrhea.",
+        "I have diarrhea."
+      ],
+      [
+        "nurse",
+        "How long have you had diarrhea?",
+        "How long have you had diarrhea?"
+      ],
+      [
+        "patient",
+        "For three days.",
+        "For three days."
+      ],
+      [
+        "nurse",
+        "Do you have vomiting or abdominal pain?",
+        "Do you have vomiting or abdominal pain?"
+      ],
+      [
+        "patient",
+        "Yes, I have abdominal pain, but no vomiting.",
+        "Yes, I have abdominal pain, but no vomiting."
+      ],
+      [
+        "nurse",
+        "We need a stool test and a urine test to check the cause.",
+        "We need a stool test and a urine test to check the cause."
+      ],
+      [
+        "nurse",
+        "Please drink small sips of water and wait for the doctor.",
+        "Please drink small sips of water and wait for the doctor."
+      ],
+      [
+        "patient",
+        "Thank you.",
+        "Thank you."
+      ]
     ]
   }
 ]

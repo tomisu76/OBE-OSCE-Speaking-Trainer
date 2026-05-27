@@ -1,0 +1,472 @@
+[
+  {
+    "id": "patient-1-slide-000",
+    "patientId": 1,
+    "slideNumber": 0,
+    "speaker": "intro",
+    "voice": "female_nurse",
+    "text": "Patient 1. John White. Broken arm after an accident three hours ago.",
+    "ttsText": "Patient 1. John White. Broken arm after an accident three hours ago.",
+    "audioPath": "audio/patient-1-john-white/slide-000.wav"
+  },
+  {
+    "id": "patient-1-slide-001",
+    "patientId": 1,
+    "slideNumber": 1,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "Good morning. My name is _____. I am a practical nurse.",
+    "ttsText": "Good morning. My name is blank. I am a practical nurse.",
+    "audioPath": "audio/patient-1-john-white/slide-001.wav"
+  },
+  {
+    "id": "patient-1-slide-002",
+    "patientId": 1,
+    "slideNumber": 2,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "Good morning.",
+    "ttsText": "Good morning.",
+    "audioPath": "audio/patient-1-john-white/slide-002.wav"
+  },
+  {
+    "id": "patient-1-slide-003",
+    "patientId": 1,
+    "slideNumber": 3,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "May I ask your name, please?",
+    "ttsText": "May I ask your name, please?",
+    "audioPath": "audio/patient-1-john-white/slide-003.wav"
+  },
+  {
+    "id": "patient-1-slide-004",
+    "patientId": 1,
+    "slideNumber": 4,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "My name is John White.",
+    "ttsText": "My name is John White.",
+    "audioPath": "audio/patient-1-john-white/slide-004.wav"
+  },
+  {
+    "id": "patient-1-slide-005",
+    "patientId": 1,
+    "slideNumber": 5,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "What symptoms do you have?",
+    "ttsText": "What symptoms do you have?",
+    "audioPath": "audio/patient-1-john-white/slide-005.wav"
+  },
+  {
+    "id": "patient-1-slide-006",
+    "patientId": 1,
+    "slideNumber": 6,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "I have a broken arm.",
+    "ttsText": "I have a broken arm.",
+    "audioPath": "audio/patient-1-john-white/slide-006.wav"
+  },
+  {
+    "id": "patient-1-slide-007",
+    "patientId": 1,
+    "slideNumber": 7,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "When did it happen?",
+    "ttsText": "When did it happen?",
+    "audioPath": "audio/patient-1-john-white/slide-007.wav"
+  },
+  {
+    "id": "patient-1-slide-008",
+    "patientId": 1,
+    "slideNumber": 8,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "It happened three hours ago.",
+    "ttsText": "It happened three hours ago.",
+    "audioPath": "audio/patient-1-john-white/slide-008.wav"
+  },
+  {
+    "id": "patient-1-slide-009",
+    "patientId": 1,
+    "slideNumber": 9,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "Do you have any allergies?",
+    "ttsText": "Do you have any allergies?",
+    "audioPath": "audio/patient-1-john-white/slide-009.wav"
+  },
+  {
+    "id": "patient-1-slide-010",
+    "patientId": 1,
+    "slideNumber": 10,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "Yes, I am allergic to paracetamol.",
+    "ttsText": "Yes, I am allergic to paracetamol.",
+    "audioPath": "audio/patient-1-john-white/slide-010.wav"
+  },
+  {
+    "id": "patient-1-slide-011",
+    "patientId": 1,
+    "slideNumber": 11,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "May I check your vital signs now?",
+    "ttsText": "May I check your vital signs now?",
+    "audioPath": "audio/patient-1-john-white/slide-011.wav"
+  },
+  {
+    "id": "patient-1-slide-012",
+    "patientId": 1,
+    "slideNumber": 12,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "Yes, please.",
+    "ttsText": "Yes, please.",
+    "audioPath": "audio/patient-1-john-white/slide-012.wav"
+  },
+  {
+    "id": "patient-1-slide-013",
+    "patientId": 1,
+    "slideNumber": 13,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "Your Blood pressure is 126/82 millimeters of mercury.",
+    "ttsText": "Your blood pressure is one hundred twenty-six over eighty-two millimeters of mercury.",
+    "audioPath": "audio/patient-1-john-white/slide-013.wav"
+  },
+  {
+    "id": "patient-1-slide-014",
+    "patientId": 1,
+    "slideNumber": 14,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "Your Respiratory rate is 18 breaths per minute.",
+    "ttsText": "Your respiratory rate is eighteen breaths per minute.",
+    "audioPath": "audio/patient-1-john-white/slide-014.wav"
+  },
+  {
+    "id": "patient-1-slide-015",
+    "patientId": 1,
+    "slideNumber": 15,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "Your Pulse rate is 86 beats per minute.",
+    "ttsText": "Your pulse rate is eighty-six beats per minute.",
+    "audioPath": "audio/patient-1-john-white/slide-015.wav"
+  },
+  {
+    "id": "patient-1-slide-016",
+    "patientId": 1,
+    "slideNumber": 16,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "The X-ray room is on the second floor. Please wait for the doctor.",
+    "ttsText": "The X-ray room is on the second floor. Please wait for the doctor.",
+    "audioPath": "audio/patient-1-john-white/slide-016.wav"
+  },
+  {
+    "id": "patient-1-slide-017",
+    "patientId": 1,
+    "slideNumber": 17,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "Thank you.",
+    "ttsText": "Thank you.",
+    "audioPath": "audio/patient-1-john-white/slide-017.wav"
+  },
+  {
+    "id": "patient-1-slide-018",
+    "patientId": 1,
+    "slideNumber": 18,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "You are welcome. Have a good day.",
+    "ttsText": "You are welcome. Have a good day.",
+    "audioPath": "audio/patient-1-john-white/slide-018.wav"
+  },
+  {
+    "id": "patient-2-slide-000",
+    "patientId": 2,
+    "slideNumber": 0,
+    "speaker": "intro",
+    "voice": "female_nurse",
+    "text": "Patient 2. Thomas Blake. Chest pain for two days. History of heart disease.",
+    "ttsText": "Patient 2. Thomas Blake. Chest pain for two days. History of heart disease.",
+    "audioPath": "audio/patient-2-thomas-blake/slide-000.wav"
+  },
+  {
+    "id": "patient-2-slide-001",
+    "patientId": 2,
+    "slideNumber": 1,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "Good morning. My name is _____. I am a practical nurse.",
+    "ttsText": "Good morning. My name is blank. I am a practical nurse.",
+    "audioPath": "audio/patient-2-thomas-blake/slide-001.wav"
+  },
+  {
+    "id": "patient-2-slide-002",
+    "patientId": 2,
+    "slideNumber": 2,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "Good morning.",
+    "ttsText": "Good morning.",
+    "audioPath": "audio/patient-2-thomas-blake/slide-002.wav"
+  },
+  {
+    "id": "patient-2-slide-003",
+    "patientId": 2,
+    "slideNumber": 3,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "May I ask your name, please?",
+    "ttsText": "May I ask your name, please?",
+    "audioPath": "audio/patient-2-thomas-blake/slide-003.wav"
+  },
+  {
+    "id": "patient-2-slide-004",
+    "patientId": 2,
+    "slideNumber": 4,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "My name is Thomas Blake.",
+    "ttsText": "My name is Thomas Blake.",
+    "audioPath": "audio/patient-2-thomas-blake/slide-004.wav"
+  },
+  {
+    "id": "patient-2-slide-005",
+    "patientId": 2,
+    "slideNumber": 5,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "What symptoms do you have?",
+    "ttsText": "What symptoms do you have?",
+    "audioPath": "audio/patient-2-thomas-blake/slide-005.wav"
+  },
+  {
+    "id": "patient-2-slide-006",
+    "patientId": 2,
+    "slideNumber": 6,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "I have chest pain.",
+    "ttsText": "I have chest pain.",
+    "audioPath": "audio/patient-2-thomas-blake/slide-006.wav"
+  },
+  {
+    "id": "patient-2-slide-007",
+    "patientId": 2,
+    "slideNumber": 7,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "When did the symptoms start?",
+    "ttsText": "When did the symptoms start?",
+    "audioPath": "audio/patient-2-thomas-blake/slide-007.wav"
+  },
+  {
+    "id": "patient-2-slide-008",
+    "patientId": 2,
+    "slideNumber": 8,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "They started two days ago.",
+    "ttsText": "They started two days ago.",
+    "audioPath": "audio/patient-2-thomas-blake/slide-008.wav"
+  },
+  {
+    "id": "patient-2-slide-009",
+    "patientId": 2,
+    "slideNumber": 9,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "Do you have any underlying diseases?",
+    "ttsText": "Do you have any underlying diseases?",
+    "audioPath": "audio/patient-2-thomas-blake/slide-009.wav"
+  },
+  {
+    "id": "patient-2-slide-010",
+    "patientId": 2,
+    "slideNumber": 10,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "Yes, I have heart disease.",
+    "ttsText": "Yes, I have heart disease.",
+    "audioPath": "audio/patient-2-thomas-blake/slide-010.wav"
+  },
+  {
+    "id": "patient-2-slide-011",
+    "patientId": 2,
+    "slideNumber": 11,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "This is important. I will call the doctor and check your vital signs now.",
+    "ttsText": "This is important. I will call the doctor and check your vital signs now.",
+    "audioPath": "audio/patient-2-thomas-blake/slide-011.wav"
+  },
+  {
+    "id": "patient-2-slide-012",
+    "patientId": 2,
+    "slideNumber": 12,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "Your Blood pressure is 146/92 millimeters of mercury.",
+    "ttsText": "Your blood pressure is one hundred forty-six over ninety-two millimeters of mercury.",
+    "audioPath": "audio/patient-2-thomas-blake/slide-012.wav"
+  },
+  {
+    "id": "patient-2-slide-013",
+    "patientId": 2,
+    "slideNumber": 13,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "Your Pulse rate is 104 beats per minute.",
+    "ttsText": "Your pulse rate is one hundred four beats per minute.",
+    "audioPath": "audio/patient-2-thomas-blake/slide-013.wav"
+  },
+  {
+    "id": "patient-2-slide-014",
+    "patientId": 2,
+    "slideNumber": 14,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "The cardiology clinic is on the second floor. Please stay seated and try to stay calm.",
+    "ttsText": "The cardiology clinic is on the second floor. Please stay seated and try to stay calm.",
+    "audioPath": "audio/patient-2-thomas-blake/slide-014.wav"
+  },
+  {
+    "id": "patient-2-slide-015",
+    "patientId": 2,
+    "slideNumber": 15,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "Thank you.",
+    "ttsText": "Thank you.",
+    "audioPath": "audio/patient-2-thomas-blake/slide-015.wav"
+  },
+  {
+    "id": "patient-3-slide-000",
+    "patientId": 3,
+    "slideNumber": 0,
+    "speaker": "intro",
+    "voice": "female_nurse",
+    "text": "Patient 3. Peter Brown. Diarrhea for three days. No allergies and no underlying disease.",
+    "ttsText": "Patient 3. Peter Brown. Diarrhea for three days. No allergies and no underlying disease.",
+    "audioPath": "audio/patient-3-peter-brown/slide-000.wav"
+  },
+  {
+    "id": "patient-3-slide-001",
+    "patientId": 3,
+    "slideNumber": 1,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "Good morning. My name is _____. I am a practical nurse.",
+    "ttsText": "Good morning. My name is blank. I am a practical nurse.",
+    "audioPath": "audio/patient-3-peter-brown/slide-001.wav"
+  },
+  {
+    "id": "patient-3-slide-002",
+    "patientId": 3,
+    "slideNumber": 2,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "Good morning.",
+    "ttsText": "Good morning.",
+    "audioPath": "audio/patient-3-peter-brown/slide-002.wav"
+  },
+  {
+    "id": "patient-3-slide-003",
+    "patientId": 3,
+    "slideNumber": 3,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "What symptoms do you have?",
+    "ttsText": "What symptoms do you have?",
+    "audioPath": "audio/patient-3-peter-brown/slide-003.wav"
+  },
+  {
+    "id": "patient-3-slide-004",
+    "patientId": 3,
+    "slideNumber": 4,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "I have diarrhea.",
+    "ttsText": "I have diarrhea.",
+    "audioPath": "audio/patient-3-peter-brown/slide-004.wav"
+  },
+  {
+    "id": "patient-3-slide-005",
+    "patientId": 3,
+    "slideNumber": 5,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "How long have you had diarrhea?",
+    "ttsText": "How long have you had diarrhea?",
+    "audioPath": "audio/patient-3-peter-brown/slide-005.wav"
+  },
+  {
+    "id": "patient-3-slide-006",
+    "patientId": 3,
+    "slideNumber": 6,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "For three days.",
+    "ttsText": "For three days.",
+    "audioPath": "audio/patient-3-peter-brown/slide-006.wav"
+  },
+  {
+    "id": "patient-3-slide-007",
+    "patientId": 3,
+    "slideNumber": 7,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "Do you have vomiting or abdominal pain?",
+    "ttsText": "Do you have vomiting or abdominal pain?",
+    "audioPath": "audio/patient-3-peter-brown/slide-007.wav"
+  },
+  {
+    "id": "patient-3-slide-008",
+    "patientId": 3,
+    "slideNumber": 8,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "Yes, I have abdominal pain, but no vomiting.",
+    "ttsText": "Yes, I have abdominal pain, but no vomiting.",
+    "audioPath": "audio/patient-3-peter-brown/slide-008.wav"
+  },
+  {
+    "id": "patient-3-slide-009",
+    "patientId": 3,
+    "slideNumber": 9,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "We need a stool test and a urine test to check the cause.",
+    "ttsText": "We need a stool test and a urine test to check the cause.",
+    "audioPath": "audio/patient-3-peter-brown/slide-009.wav"
+  },
+  {
+    "id": "patient-3-slide-010",
+    "patientId": 3,
+    "slideNumber": 10,
+    "speaker": "nurse",
+    "voice": "female_nurse",
+    "text": "Please drink small sips of water and wait for the doctor.",
+    "ttsText": "Please drink small sips of water and wait for the doctor.",
+    "audioPath": "audio/patient-3-peter-brown/slide-010.wav"
+  },
+  {
+    "id": "patient-3-slide-011",
+    "patientId": 3,
+    "slideNumber": 11,
+    "speaker": "patient",
+    "voice": "male_patient",
+    "text": "Thank you.",
+    "ttsText": "Thank you.",
+    "audioPath": "audio/patient-3-peter-brown/slide-011.wav"
+  }
+]
