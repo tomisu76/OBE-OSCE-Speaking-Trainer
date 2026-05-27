@@ -15,11 +15,36 @@
     "scenario": "Broken arm after an accident three hours ago.",
     "introAudioText": "Patient 1. John White. Broken arm after an accident three hours ago.",
     "vitals": [
-      ["Blood pressure", "126/82", "one hundred twenty-six over eighty-two", "millimeters of mercury"],
-      ["Respiratory rate", "18", "eighteen", "breaths per minute"],
-      ["Pulse rate", "86", "eighty-six", "beats per minute"],
-      ["Body temperature", "36.9", "thirty-six point nine", "degrees Celsius"],
-      ["Oxygen saturation", "98", "ninety-eight", "percent"]
+      [
+        "Blood pressure",
+        "126/82",
+        "one hundred twenty-six over eighty-two",
+        "millimeters of mercury"
+      ],
+      [
+        "Respiratory rate",
+        "18",
+        "eighteen",
+        "breaths per minute"
+      ],
+      [
+        "Pulse rate",
+        "86",
+        "eighty-six",
+        "beats per minute"
+      ],
+      [
+        "Body temperature",
+        "36.9",
+        "thirty-six point nine",
+        "degrees Celsius"
+      ],
+      [
+        "Oxygen saturation",
+        "98",
+        "ninety-eight",
+        "percent"
+      ]
     ],
     "lines": [
       {
@@ -170,7 +195,7 @@
   },
   {
     "id": 2,
-    "name": "Thomas Blake",
+    "name": "Thomas Blake Blak",
     "audioFolder": "patient-2-thomas-blake",
     "introAudioFile": "intro.wav",
     "course": "English for Professional Nursing",
@@ -184,11 +209,36 @@
     "scenario": "Chest pain for two days with history of heart disease.",
     "introAudioText": "Patient 2. Thomas Blake. Chest pain for two days. History of heart disease.",
     "vitals": [
-      ["Blood pressure", "146/92", "one hundred forty-six over ninety-two", "millimeters of mercury"],
-      ["Respiratory rate", "22", "twenty-two", "breaths per minute"],
-      ["Pulse rate", "104", "one hundred four", "beats per minute"],
-      ["Body temperature", "36.8", "thirty-six point eight", "degrees Celsius"],
-      ["Oxygen saturation", "96", "ninety-six", "percent"]
+      [
+        "Blood pressure",
+        "146/92",
+        "one hundred forty-six over ninety-two",
+        "millimeters of mercury"
+      ],
+      [
+        "Respiratory rate",
+        "22",
+        "twenty-two",
+        "breaths per minute"
+      ],
+      [
+        "Pulse rate",
+        "104",
+        "one hundred four",
+        "beats per minute"
+      ],
+      [
+        "Body temperature",
+        "36.8",
+        "thirty-six point eight",
+        "degrees Celsius"
+      ],
+      [
+        "Oxygen saturation",
+        "96",
+        "ninety-six",
+        "percent"
+      ]
     ],
     "lines": [
       {
@@ -329,11 +379,36 @@
     "scenario": "Diarrhea for three days with no allergies and no underlying disease.",
     "introAudioText": "Patient 3. Peter Brown. Diarrhea for three days. No allergies and no underlying disease.",
     "vitals": [
-      ["Blood pressure", "108/70", "one hundred eight over seventy", "millimeters of mercury"],
-      ["Respiratory rate", "18", "eighteen", "breaths per minute"],
-      ["Pulse rate", "96", "ninety-six", "beats per minute"],
-      ["Body temperature", "37.6", "thirty-seven point six", "degrees Celsius"],
-      ["Oxygen saturation", "98", "ninety-eight", "percent"]
+      [
+        "Blood pressure",
+        "108/70",
+        "one hundred eight over seventy",
+        "millimeters of mercury"
+      ],
+      [
+        "Respiratory rate",
+        "18",
+        "eighteen",
+        "breaths per minute"
+      ],
+      [
+        "Pulse rate",
+        "96",
+        "ninety-six",
+        "beats per minute"
+      ],
+      [
+        "Body temperature",
+        "37.6",
+        "thirty-seven point six",
+        "degrees Celsius"
+      ],
+      [
+        "Oxygen saturation",
+        "98",
+        "ninety-eight",
+        "percent"
+      ]
     ],
     "lines": [
       {
