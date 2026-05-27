@@ -17,6 +17,7 @@ permissions:
 
 jobs:
   generate-audio:
+    if: github.event_name != 'push' || github.event.head_commit.message != 'Update patient text'
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
@@ -70,5 +71,6 @@ jobs:
             echo "No generated audio or text changes to commit."
           else
             git commit -m "Normalize patient text and regenerate Kokoro audio"
+            git pull --rebase origin main
             git push
           fi
