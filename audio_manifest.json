@@ -63,8 +63,8 @@
     "label": "New slide",
     "speaker": "nurse",
     "voice": "female_nurse",
-    "text": "hi",
-    "ttsText": "hi",
+    "text": "bye",
+    "ttsText": "bye",
     "audioFile": "new-slide-2.wav",
     "audioPath": "audio/patient-1-john-white/new-slide-2.wav"
   },
