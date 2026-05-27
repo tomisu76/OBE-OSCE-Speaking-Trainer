@@ -3,6 +3,7 @@
     "id": 1,
     "name": "John White",
     "audioFolder": "patient-1-john-white",
+    "introAudioFile": "intro.wav",
     "course": "English for Professional Nursing",
     "week": "OSCE Speaking Practice",
     "clo": [
@@ -14,134 +15,164 @@
     "scenario": "Broken arm after an accident three hours ago.",
     "introAudioText": "Patient 1. John White. Broken arm after an accident three hours ago.",
     "vitals": [
-      [
-        "Blood pressure",
-        "126/82",
-        "one hundred twenty-six over eighty-two",
-        "millimeters of mercury"
-      ],
-      [
-        "Respiratory rate",
-        "18",
-        "eighteen",
-        "breaths per minute"
-      ],
-      [
-        "Pulse rate",
-        "86",
-        "eighty-six",
-        "beats per minute"
-      ],
-      [
-        "Body temperature",
-        "36.9",
-        "thirty-six point nine",
-        "degrees Celsius"
-      ],
-      [
-        "Oxygen saturation",
-        "98",
-        "ninety-eight",
-        "percent"
-      ]
+      ["Blood pressure", "126/82", "one hundred twenty-six over eighty-two", "millimeters of mercury"],
+      ["Respiratory rate", "18", "eighteen", "breaths per minute"],
+      ["Pulse rate", "86", "eighty-six", "beats per minute"],
+      ["Body temperature", "36.9", "thirty-six point nine", "degrees Celsius"],
+      ["Oxygen saturation", "98", "ninety-eight", "percent"]
     ],
     "lines": [
-      [
-        "nurse",
-        "Good morning. My name is _____. I am a practical nurse.",
-        "Good morning. My name is blank. I am a practical nurse."
-      ],
-      [
-        "patient",
-        "Good morning.",
-        "Good morning."
-      ],
-      [
-        "nurse",
-        "May I ask your name, please?",
-        "May I ask your name, please?"
-      ],
-      [
-        "patient",
-        "My name is John White.",
-        "My name is John White."
-      ],
-      [
-        "nurse",
-        "What symptoms do you have?",
-        "What symptoms do you have?"
-      ],
-      [
-        "patient",
-        "I have a broken arm.",
-        "I have a broken arm."
-      ],
-      [
-        "nurse",
-        "When did it happen?",
-        "When did it happen?"
-      ],
-      [
-        "patient",
-        "It happened three hours ago.",
-        "It happened three hours ago."
-      ],
-      [
-        "nurse",
-        "Do you have any allergies?",
-        "Do you have any allergies?"
-      ],
-      [
-        "patient",
-        "Yes, I am allergic to paracetamol.",
-        "Yes, I am allergic to paracetamol."
-      ],
-      [
-        "nurse",
-        "May I check your vital signs now?",
-        "May I check your vital signs now?"
-      ],
-      [
-        "patient",
-        "Yes, please.",
-        "Yes, please."
-      ],
-      [
-        "nurse",
-        "Your <span class=\"vital-tag\">Blood pressure</span> is 126/82 millimeters of mercury.",
-        "Your blood pressure is one hundred twenty-six over eighty-two millimeters of mercury."
-      ],
-      [
-        "nurse",
-        "Your <span class=\"vital-tag\">Respiratory rate</span> is 18 breaths per minute.",
-        "Your respiratory rate is eighteen breaths per minute."
-      ],
-      [
-        "nurse",
-        "Your <span class=\"vital-tag\">Pulse rate</span> is 86 beats per minute.",
-        "Your pulse rate is eighty-six beats per minute."
-      ],
-      [
-        "nurse",
-        "The X-ray room is on the second floor. Please wait for the doctor.",
-        "The X-ray room is on the second floor. Please wait for the doctor."
-      ],
-      [
-        "patient",
-        "Thank you.",
-        "Thank you."
-      ],
-      [
-        "nurse",
-        "You are welcome. Have a good day.",
-        "You are welcome. Have a good day."
-      ]
+      {
+        "id": "nurse-greeting",
+        "speaker": "nurse",
+        "label": "Nurse greeting",
+        "text": "Good morning. My name is _____. I am a practical nurse.",
+        "audioText": "Good morning. My name is blank. I am a practical nurse.",
+        "audioFile": "nurse-greeting.wav"
+      },
+      {
+        "id": "patient-greeting",
+        "speaker": "patient",
+        "label": "Patient greeting",
+        "text": "Good morning.",
+        "audioText": "Good morning.",
+        "audioFile": "patient-greeting.wav"
+      },
+      {
+        "id": "ask-name",
+        "speaker": "nurse",
+        "label": "Ask patient name",
+        "text": "May I ask your name, please?",
+        "audioText": "May I ask your name, please?",
+        "audioFile": "ask-name.wav"
+      },
+      {
+        "id": "patient-name",
+        "speaker": "patient",
+        "label": "Patient gives name",
+        "text": "My name is John White.",
+        "audioText": "My name is John White.",
+        "audioFile": "patient-name.wav"
+      },
+      {
+        "id": "ask-symptoms",
+        "speaker": "nurse",
+        "label": "Ask symptoms",
+        "text": "What symptoms do you have?",
+        "audioText": "What symptoms do you have?",
+        "audioFile": "ask-symptoms.wav"
+      },
+      {
+        "id": "patient-broken-arm",
+        "speaker": "patient",
+        "label": "Patient symptom",
+        "text": "I have a broken arm.",
+        "audioText": "I have a broken arm.",
+        "audioFile": "patient-broken-arm.wav"
+      },
+      {
+        "id": "ask-when-happened",
+        "speaker": "nurse",
+        "label": "Ask onset",
+        "text": "When did it happen?",
+        "audioText": "When did it happen?",
+        "audioFile": "ask-when-happened.wav"
+      },
+      {
+        "id": "patient-onset-three-hours",
+        "speaker": "patient",
+        "label": "Patient onset",
+        "text": "It happened three hours ago.",
+        "audioText": "It happened three hours ago.",
+        "audioFile": "patient-onset-three-hours.wav"
+      },
+      {
+        "id": "ask-allergies",
+        "speaker": "nurse",
+        "label": "Ask allergies",
+        "text": "Do you have any allergies?",
+        "audioText": "Do you have any allergies?",
+        "audioFile": "ask-allergies.wav"
+      },
+      {
+        "id": "patient-paracetamol-allergy",
+        "speaker": "patient",
+        "label": "Patient allergy",
+        "text": "Yes, I am allergic to paracetamol.",
+        "audioText": "Yes, I am allergic to paracetamol.",
+        "audioFile": "patient-paracetamol-allergy.wav"
+      },
+      {
+        "id": "ask-check-vitals",
+        "speaker": "nurse",
+        "label": "Ask to check vital signs",
+        "text": "May I check your vital signs now?",
+        "audioText": "May I check your vital signs now?",
+        "audioFile": "ask-check-vitals.wav"
+      },
+      {
+        "id": "patient-consent-vitals",
+        "speaker": "patient",
+        "label": "Patient consent",
+        "text": "Yes, please.",
+        "audioText": "Yes, please.",
+        "audioFile": "patient-consent-vitals.wav"
+      },
+      {
+        "id": "explain-blood-pressure",
+        "speaker": "nurse",
+        "label": "Explain blood pressure",
+        "text": "Your <span class=\"vital-tag\">Blood pressure</span> is 126/82 millimeters of mercury.",
+        "audioText": "Your blood pressure is one hundred twenty-six over eighty-two millimeters of mercury.",
+        "audioFile": "explain-blood-pressure.wav"
+      },
+      {
+        "id": "explain-respiratory-rate",
+        "speaker": "nurse",
+        "label": "Explain respiratory rate",
+        "text": "Your <span class=\"vital-tag\">Respiratory rate</span> is 18 breaths per minute.",
+        "audioText": "Your respiratory rate is eighteen breaths per minute.",
+        "audioFile": "explain-respiratory-rate.wav"
+      },
+      {
+        "id": "explain-pulse-rate",
+        "speaker": "nurse",
+        "label": "Explain pulse rate",
+        "text": "Your <span class=\"vital-tag\">Pulse rate</span> is 86 beats per minute.",
+        "audioText": "Your pulse rate is eighty-six beats per minute.",
+        "audioFile": "explain-pulse-rate.wav"
+      },
+      {
+        "id": "give-xray-direction",
+        "speaker": "nurse",
+        "label": "Give X-ray direction",
+        "text": "The X-ray room is on the second floor. Please wait for the doctor.",
+        "audioText": "The X-ray room is on the second floor. Please wait for the doctor.",
+        "audioFile": "give-xray-direction.wav"
+      },
+      {
+        "id": "patient-thank-you",
+        "speaker": "patient",
+        "label": "Patient thanks",
+        "text": "Thank you.",
+        "audioText": "Thank you.",
+        "audioFile": "patient-thank-you.wav"
+      },
+      {
+        "id": "nurse-closing",
+        "speaker": "nurse",
+        "label": "Nurse closing",
+        "text": "You are welcome. Have a good day.",
+        "audioText": "You are welcome. Have a good day.",
+        "audioFile": "nurse-closing.wav"
+      }
     ]
   },
   {
     "id": 2,
     "name": "Thomas Blake",
     "audioFolder": "patient-2-thomas-blake",
+    "introAudioFile": "intro.wav",
     "course": "English for Professional Nursing",
     "week": "OSCE Speaking Practice",
     "clo": [
@@ -153,119 +184,140 @@
     "scenario": "Chest pain for two days with history of heart disease.",
     "introAudioText": "Patient 2. Thomas Blake. Chest pain for two days. History of heart disease.",
     "vitals": [
-      [
-        "Blood pressure",
-        "146/92",
-        "one hundred forty-six over ninety-two",
-        "millimeters of mercury"
-      ],
-      [
-        "Respiratory rate",
-        "22",
-        "twenty-two",
-        "breaths per minute"
-      ],
-      [
-        "Pulse rate",
-        "104",
-        "one hundred four",
-        "beats per minute"
-      ],
-      [
-        "Body temperature",
-        "36.8",
-        "thirty-six point eight",
-        "degrees Celsius"
-      ],
-      [
-        "Oxygen saturation",
-        "96",
-        "ninety-six",
-        "percent"
-      ]
+      ["Blood pressure", "146/92", "one hundred forty-six over ninety-two", "millimeters of mercury"],
+      ["Respiratory rate", "22", "twenty-two", "breaths per minute"],
+      ["Pulse rate", "104", "one hundred four", "beats per minute"],
+      ["Body temperature", "36.8", "thirty-six point eight", "degrees Celsius"],
+      ["Oxygen saturation", "96", "ninety-six", "percent"]
     ],
     "lines": [
-      [
-        "nurse",
-        "Good morning. My name is _____. I am a practical nurse.",
-        "Good morning. My name is blank. I am a practical nurse."
-      ],
-      [
-        "patient",
-        "Good morning.",
-        "Good morning."
-      ],
-      [
-        "nurse",
-        "May I ask your name, please?",
-        "May I ask your name, please?"
-      ],
-      [
-        "patient",
-        "My name is Thomas Blake.",
-        "My name is Thomas Blake."
-      ],
-      [
-        "nurse",
-        "What symptoms do you have?",
-        "What symptoms do you have?"
-      ],
-      [
-        "patient",
-        "I have chest pain.",
-        "I have chest pain."
-      ],
-      [
-        "nurse",
-        "When did the symptoms start?",
-        "When did the symptoms start?"
-      ],
-      [
-        "patient",
-        "They started two days ago.",
-        "They started two days ago."
-      ],
-      [
-        "nurse",
-        "Do you have any underlying diseases?",
-        "Do you have any underlying diseases?"
-      ],
-      [
-        "patient",
-        "Yes, I have heart disease.",
-        "Yes, I have heart disease."
-      ],
-      [
-        "nurse",
-        "This is important. I will call the doctor and check your vital signs now.",
-        "This is important. I will call the doctor and check your vital signs now."
-      ],
-      [
-        "nurse",
-        "Your <span class=\"vital-tag\">Blood pressure</span> is 146/92 millimeters of mercury.",
-        "Your blood pressure is one hundred forty-six over ninety-two millimeters of mercury."
-      ],
-      [
-        "nurse",
-        "Your <span class=\"vital-tag\">Pulse rate</span> is 104 beats per minute.",
-        "Your pulse rate is one hundred four beats per minute."
-      ],
-      [
-        "nurse",
-        "The cardiology clinic is on the second floor. Please stay seated and try to stay calm.",
-        "The cardiology clinic is on the second floor. Please stay seated and try to stay calm."
-      ],
-      [
-        "patient",
-        "Thank you.",
-        "Thank you."
-      ]
+      {
+        "id": "nurse-greeting",
+        "speaker": "nurse",
+        "label": "Nurse greeting",
+        "text": "Good morning. My name is _____. I am a practical nurse.",
+        "audioText": "Good morning. My name is blank. I am a practical nurse.",
+        "audioFile": "nurse-greeting.wav"
+      },
+      {
+        "id": "patient-greeting",
+        "speaker": "patient",
+        "label": "Patient greeting",
+        "text": "Good morning.",
+        "audioText": "Good morning.",
+        "audioFile": "patient-greeting.wav"
+      },
+      {
+        "id": "ask-name",
+        "speaker": "nurse",
+        "label": "Ask patient name",
+        "text": "May I ask your name, please?",
+        "audioText": "May I ask your name, please?",
+        "audioFile": "ask-name.wav"
+      },
+      {
+        "id": "patient-name",
+        "speaker": "patient",
+        "label": "Patient gives name",
+        "text": "My name is Thomas Blake.",
+        "audioText": "My name is Thomas Blake.",
+        "audioFile": "patient-name.wav"
+      },
+      {
+        "id": "ask-symptoms",
+        "speaker": "nurse",
+        "label": "Ask symptoms",
+        "text": "What symptoms do you have?",
+        "audioText": "What symptoms do you have?",
+        "audioFile": "ask-symptoms.wav"
+      },
+      {
+        "id": "patient-chest-pain",
+        "speaker": "patient",
+        "label": "Patient symptom",
+        "text": "I have chest pain.",
+        "audioText": "I have chest pain.",
+        "audioFile": "patient-chest-pain.wav"
+      },
+      {
+        "id": "ask-symptom-onset",
+        "speaker": "nurse",
+        "label": "Ask onset",
+        "text": "When did the symptoms start?",
+        "audioText": "When did the symptoms start?",
+        "audioFile": "ask-symptom-onset.wav"
+      },
+      {
+        "id": "patient-onset-two-days",
+        "speaker": "patient",
+        "label": "Patient onset",
+        "text": "They started two days ago.",
+        "audioText": "They started two days ago.",
+        "audioFile": "patient-onset-two-days.wav"
+      },
+      {
+        "id": "ask-underlying-diseases",
+        "speaker": "nurse",
+        "label": "Ask underlying disease",
+        "text": "Do you have any underlying diseases?",
+        "audioText": "Do you have any underlying diseases?",
+        "audioFile": "ask-underlying-diseases.wav"
+      },
+      {
+        "id": "patient-heart-disease",
+        "speaker": "patient",
+        "label": "Patient history",
+        "text": "Yes, I have heart disease.",
+        "audioText": "Yes, I have heart disease.",
+        "audioFile": "patient-heart-disease.wav"
+      },
+      {
+        "id": "urgent-call-doctor",
+        "speaker": "nurse",
+        "label": "Urgent response",
+        "text": "This is important. I will call the doctor and check your vital signs now.",
+        "audioText": "This is important. I will call the doctor and check your vital signs now.",
+        "audioFile": "urgent-call-doctor.wav"
+      },
+      {
+        "id": "explain-blood-pressure",
+        "speaker": "nurse",
+        "label": "Explain blood pressure",
+        "text": "Your <span class=\"vital-tag\">Blood pressure</span> is 146/92 millimeters of mercury.",
+        "audioText": "Your blood pressure is one hundred forty-six over ninety-two millimeters of mercury.",
+        "audioFile": "explain-blood-pressure.wav"
+      },
+      {
+        "id": "explain-pulse-rate",
+        "speaker": "nurse",
+        "label": "Explain pulse rate",
+        "text": "Your <span class=\"vital-tag\">Pulse rate</span> is 104 beats per minute.",
+        "audioText": "Your pulse rate is one hundred four beats per minute.",
+        "audioFile": "explain-pulse-rate.wav"
+      },
+      {
+        "id": "give-cardiology-direction",
+        "speaker": "nurse",
+        "label": "Give cardiology direction",
+        "text": "The cardiology clinic is on the second floor. Please stay seated and try to stay calm.",
+        "audioText": "The cardiology clinic is on the second floor. Please stay seated and try to stay calm.",
+        "audioFile": "give-cardiology-direction.wav"
+      },
+      {
+        "id": "patient-thank-you",
+        "speaker": "patient",
+        "label": "Patient thanks",
+        "text": "Thank you.",
+        "audioText": "Thank you.",
+        "audioFile": "patient-thank-you.wav"
+      }
     ]
   },
   {
     "id": 3,
     "name": "Peter Brown",
     "audioFolder": "patient-3-peter-brown",
+    "introAudioFile": "intro.wav",
     "course": "English for Professional Nursing",
     "week": "Common Diseases and Symptoms",
     "clo": [
@@ -277,93 +329,101 @@
     "scenario": "Diarrhea for three days with no allergies and no underlying disease.",
     "introAudioText": "Patient 3. Peter Brown. Diarrhea for three days. No allergies and no underlying disease.",
     "vitals": [
-      [
-        "Blood pressure",
-        "108/70",
-        "one hundred eight over seventy",
-        "millimeters of mercury"
-      ],
-      [
-        "Respiratory rate",
-        "18",
-        "eighteen",
-        "breaths per minute"
-      ],
-      [
-        "Pulse rate",
-        "96",
-        "ninety-six",
-        "beats per minute"
-      ],
-      [
-        "Body temperature",
-        "37.6",
-        "thirty-seven point six",
-        "degrees Celsius"
-      ],
-      [
-        "Oxygen saturation",
-        "98",
-        "ninety-eight",
-        "percent"
-      ]
+      ["Blood pressure", "108/70", "one hundred eight over seventy", "millimeters of mercury"],
+      ["Respiratory rate", "18", "eighteen", "breaths per minute"],
+      ["Pulse rate", "96", "ninety-six", "beats per minute"],
+      ["Body temperature", "37.6", "thirty-seven point six", "degrees Celsius"],
+      ["Oxygen saturation", "98", "ninety-eight", "percent"]
     ],
     "lines": [
-      [
-        "nurse",
-        "Good morning. My name is _____. I am a practical nurse.",
-        "Good morning. My name is blank. I am a practical nurse."
-      ],
-      [
-        "patient",
-        "Good morning.",
-        "Good morning."
-      ],
-      [
-        "nurse",
-        "What symptoms do you have?",
-        "What symptoms do you have?"
-      ],
-      [
-        "patient",
-        "I have diarrhea.",
-        "I have diarrhea."
-      ],
-      [
-        "nurse",
-        "How long have you had diarrhea?",
-        "How long have you had diarrhea?"
-      ],
-      [
-        "patient",
-        "For three days.",
-        "For three days."
-      ],
-      [
-        "nurse",
-        "Do you have vomiting or abdominal pain?",
-        "Do you have vomiting or abdominal pain?"
-      ],
-      [
-        "patient",
-        "Yes, I have abdominal pain, but no vomiting.",
-        "Yes, I have abdominal pain, but no vomiting."
-      ],
-      [
-        "nurse",
-        "We need a stool test and a urine test to check the cause.",
-        "We need a stool test and a urine test to check the cause."
-      ],
-      [
-        "nurse",
-        "Please drink small sips of water and wait for the doctor.",
-        "Please drink small sips of water and wait for the doctor."
-      ],
-      [
-        "patient",
-        "Thank you.",
-        "Thank you."
-      ]
+      {
+        "id": "nurse-greeting",
+        "speaker": "nurse",
+        "label": "Nurse greeting",
+        "text": "Good morning. My name is _____. I am a practical nurse.",
+        "audioText": "Good morning. My name is blank. I am a practical nurse.",
+        "audioFile": "nurse-greeting.wav"
+      },
+      {
+        "id": "patient-greeting",
+        "speaker": "patient",
+        "label": "Patient greeting",
+        "text": "Good morning.",
+        "audioText": "Good morning.",
+        "audioFile": "patient-greeting.wav"
+      },
+      {
+        "id": "ask-symptoms",
+        "speaker": "nurse",
+        "label": "Ask symptoms",
+        "text": "What symptoms do you have?",
+        "audioText": "What symptoms do you have?",
+        "audioFile": "ask-symptoms.wav"
+      },
+      {
+        "id": "patient-diarrhea",
+        "speaker": "patient",
+        "label": "Patient symptom",
+        "text": "I have diarrhea.",
+        "audioText": "I have diarrhea.",
+        "audioFile": "patient-diarrhea.wav"
+      },
+      {
+        "id": "ask-diarrhea-duration",
+        "speaker": "nurse",
+        "label": "Ask diarrhea duration",
+        "text": "How long have you had diarrhea?",
+        "audioText": "How long have you had diarrhea?",
+        "audioFile": "ask-diarrhea-duration.wav"
+      },
+      {
+        "id": "patient-three-days",
+        "speaker": "patient",
+        "label": "Patient duration",
+        "text": "For three days.",
+        "audioText": "For three days.",
+        "audioFile": "patient-three-days.wav"
+      },
+      {
+        "id": "ask-vomiting-abdominal-pain",
+        "speaker": "nurse",
+        "label": "Ask associated symptoms",
+        "text": "Do you have vomiting or abdominal pain?",
+        "audioText": "Do you have vomiting or abdominal pain?",
+        "audioFile": "ask-vomiting-abdominal-pain.wav"
+      },
+      {
+        "id": "patient-abdominal-pain",
+        "speaker": "patient",
+        "label": "Patient associated symptoms",
+        "text": "Yes, I have abdominal pain, but no vomiting.",
+        "audioText": "Yes, I have abdominal pain, but no vomiting.",
+        "audioFile": "patient-abdominal-pain.wav"
+      },
+      {
+        "id": "explain-stool-urine-test",
+        "speaker": "nurse",
+        "label": "Explain tests",
+        "text": "We need a stool test and a urine test to check the cause.",
+        "audioText": "We need a stool test and a urine test to check the cause.",
+        "audioFile": "explain-stool-urine-test.wav"
+      },
+      {
+        "id": "give-hydration-advice",
+        "speaker": "nurse",
+        "label": "Give hydration advice",
+        "text": "Please drink small sips of water and wait for the doctor.",
+        "audioText": "Please drink small sips of water and wait for the doctor.",
+        "audioFile": "give-hydration-advice.wav"
+      },
+      {
+        "id": "patient-thank-you",
+        "speaker": "patient",
+        "label": "Patient thanks",
+        "text": "Thank you.",
+        "audioText": "Thank you.",
+        "audioFile": "patient-thank-you.wav"
+      }
     ]
   }
 ]
