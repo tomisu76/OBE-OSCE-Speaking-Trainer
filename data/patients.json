@@ -56,6 +56,14 @@
         "audioFile": "nurse-greeting.wav"
       },
       {
+        "id": "new-slide",
+        "speaker": "nurse",
+        "label": "New slide",
+        "text": "New slide text.",
+        "audioText": "New slide text.",
+        "audioFile": "new-slide.wav"
+      },
+      {
         "id": "patient-greeting",
         "speaker": "patient",
         "label": "Patient greeting",
