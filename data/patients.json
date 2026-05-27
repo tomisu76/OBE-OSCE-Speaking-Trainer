@@ -73,7 +73,7 @@
       },
       {
         "id": "new-slide-2",
-        "speaker": "nurse",
+        "speaker": "patient",
         "label": "New slide",
         "text": "hi",
         "audioText": "hi",
