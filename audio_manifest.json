@@ -35,7 +35,7 @@
     "label": "Patient greeting",
     "speaker": "patient",
     "voice": "male_patient",
-    "text": "Good morning.",
+    "text": "Good morning. may i see doctor please?",
     "ttsText": "Good morning.",
     "audioFile": "patient-greeting.wav",
     "audioPath": "audio/patient-1-john-white/patient-greeting.wav"
