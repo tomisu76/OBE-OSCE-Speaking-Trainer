@@ -50,3 +50,18 @@ npm run normalize
 npm run manifest
 npm run audio:all
 ```
+
+## End-to-end testing (Playwright)
+
+```bash
+npm install
+npx playwright install --with-deps chromium
+npm run test:e2e
+```
+
+Useful options:
+
+```bash
+npm run test:e2e:ui      # interactive runner
+PLAYWRIGHT_BASE_URL=http://127.0.0.1:4173 npm run test:e2e
+```

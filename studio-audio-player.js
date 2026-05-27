@@ -40,6 +40,8 @@
   }
 
   function getSlideIndex() {
+    const selected = document.getElementById('editorSlide');
+    if (selected && selected.value !== '') return Number(selected.value) || 0;
     return typeof window.editorSlideIndex === 'number' ? window.editorSlideIndex : 0;
   }
 
