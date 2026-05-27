@@ -1,5 +1,5 @@
 (() => {
-  const VERSION = 'studio-audio-player-20260527a';
+  const VERSION = 'studio-audio-player-20260527b';
   let studioAudio = null;
 
   function slugify(value) {
@@ -40,7 +40,27 @@
   }
 
   function getSlideIndex() {
-    return typeof window.editorSlideIndex === 'number' ? window.editorSlideIndex : 0;
+    const selectValue = document.getElementById('editorSlide')?.value;
+    const selectIndex = Number(selectValue);
+    if (Number.isFinite(selectIndex) && selectIndex >= 0) return selectIndex;
+
+    const activeCard = document.querySelector('.studio-slide-card.active small')?.textContent || '';
+    const match = activeCard.match(/slide-(\d+)/i);
+    if (match) return Number(match[1]);
+
+    return 0;
+  }
+
+  function getCurrentAudioTextFromEditor(slideIndex) {
+    if (slideIndex === 0) {
+      return document.getElementById('editorIntroAudio')?.value?.trim() || '';
+    }
+    return document.getElementById('editorAudioText')?.value?.trim() || '';
+  }
+
+  function getCurrentVisibleTextFromEditor(slideIndex) {
+    if (slideIndex === 0) return '';
+    return document.getElementById('editorSlideText')?.value?.trim() || '';
   }
 
   function getAudioInfo() {
@@ -48,18 +68,24 @@
     const slideIndex = getSlideIndex();
     if (!patient) return null;
     const folder = patient.audioFolder || `patient-${patient.id}-${slugify(patient.name)}`;
+
     if (slideIndex === 0) {
       return {
-        path: `/audio/${folder}/${patient.introAudioFile || 'intro.wav'}?v=${VERSION}`,
-        text: patient.introAudioText || `Patient ${patient.id}. ${patient.name}. ${patient.scenario || ''}`,
+        slideIndex,
+        path: `/audio/${folder}/${patient.introAudioFile || 'intro.wav'}?v=${VERSION}&ts=${Date.now()}`,
+        text: getCurrentAudioTextFromEditor(0) || patient.introAudioText || `Patient ${patient.id}. ${patient.name}. ${patient.scenario || ''}`,
         speaker: 'intro'
       };
     }
+
     const line = getLine(patient, slideIndex);
+    const audioFile = document.getElementById('editorAudioFile')?.textContent?.trim() || line?.audioFile || `slide-${String(slideIndex).padStart(3, '0')}.wav`;
+
     return {
-      path: `/audio/${folder}/${line?.audioFile || `slide-${String(slideIndex).padStart(3, '0')}.wav`}?v=${VERSION}`,
-      text: line?.audioText || stripHtml(line?.text || ''),
-      speaker: line?.speaker || 'nurse'
+      slideIndex,
+      path: `/audio/${folder}/${audioFile}?v=${VERSION}&ts=${Date.now()}`,
+      text: getCurrentAudioTextFromEditor(slideIndex) || line?.audioText || stripHtml(getCurrentVisibleTextFromEditor(slideIndex) || line?.text || ''),
+      speaker: line?.speaker || document.getElementById('editorSpeaker')?.value || 'nurse'
     };
   }
 
@@ -101,9 +127,16 @@
     const info = getAudioInfo();
     if (!info) return;
     stopAudio();
+
+    console.info('Studio audio playback', {
+      slideIndex: info.slideIndex,
+      path: info.path,
+      speaker: info.speaker
+    });
+
     studioAudio = new Audio(info.path);
     studioAudio.preload = 'auto';
-    studioAudio.onplaying = () => setButton('WAV audio playing…');
+    studioAudio.onplaying = () => setButton(`WAV audio playing… slide-${String(info.slideIndex).padStart(3, '0')}`);
     studioAudio.onended = () => {
       studioAudio = null;
       setButton('▶ Play this slide audio');
