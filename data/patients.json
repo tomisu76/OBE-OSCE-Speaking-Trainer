@@ -68,7 +68,7 @@
         "speaker": "nurse",
         "label": "Ask patient name",
         "text": "May I ask your name, please? or should i go",
-        "audioText": "May I ask your name, please?",
+        "audioText": "May I ask your name, please? or should i go",
         "audioFile": "ask-name.wav"
       },
       {
