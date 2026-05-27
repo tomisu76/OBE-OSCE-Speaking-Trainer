@@ -35,8 +35,8 @@
     "label": "New slide",
     "speaker": "patient",
     "voice": "male_patient",
-    "text": "shit will be shit",
-    "ttsText": "shit will be shit",
+    "text": "shit will be shit you shit. good morning all shits, today we will shit.",
+    "ttsText": "shit will be shit you shit. good morning all shits, today we will shit.",
     "audioFile": "new-slide-3.wav",
     "audioPath": "audio/patient-1-john-white/new-slide-3.wav"
   },
