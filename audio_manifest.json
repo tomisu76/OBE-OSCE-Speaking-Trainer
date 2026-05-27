@@ -7,8 +7,8 @@
     "label": "Patient intro",
     "speaker": "intro",
     "voice": "female_nurse",
-    "text": "Patient 1. John White. Broken arm after an accident three hours ago.",
-    "ttsText": "Patient 1. John White. Broken arm after an accident three hours ago.",
+    "text": "Patient 1. John White. Broken arm after an accident three hours ago. motobike",
+    "ttsText": "Patient 1. John White. Broken arm after an accident three hours ago. motobike",
     "audioFile": "intro.wav",
     "audioPath": "audio/patient-1-john-white/intro.wav"
   },
@@ -50,7 +50,7 @@
     "speaker": "nurse",
     "voice": "female_nurse",
     "text": "May I ask your name, please? or should i go",
-    "ttsText": "May I ask your name, please?",
+    "ttsText": "May I ask your name, please? or should i go",
     "audioFile": "ask-name.wav",
     "audioPath": "audio/patient-1-john-white/ask-name.wav"
   },
