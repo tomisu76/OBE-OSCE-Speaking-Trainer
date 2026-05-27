@@ -17,6 +17,9 @@ permissions:
 
 jobs:
   generate-audio:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.head_commit.message != 'Update patient text'
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
@@ -54,6 +57,19 @@ jobs:
 
       - name: Regenerate and overwrite all Kokoro audio files
         run: npm run audio:all
+
+      - name: Validate Supabase upload secrets
+        run: |
+          test -n "${SUPABASE_URL}" || (echo "Missing SUPABASE_URL" && exit 1)
+          test -n "${SUPABASE_SERVICE_ROLE_KEY}" || (echo "Missing SUPABASE_SERVICE_ROLE_KEY" && exit 1)
+          test -n "${SUPABASE_AUDIO_BUCKET}" || (echo "Missing SUPABASE_AUDIO_BUCKET" && exit 1)
+
+      - name: Upload generated WAV files to Supabase Storage
+        run: npm run audio:upload:supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_AUDIO_BUCKET: ${{ secrets.SUPABASE_AUDIO_BUCKET }}
 
       - name: Show generated audio count
         run: |

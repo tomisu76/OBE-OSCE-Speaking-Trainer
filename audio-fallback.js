@@ -4,6 +4,15 @@
   const STOP_TEXT = '⏸ Stop';
   let fallbackAudio = null;
   let fallbackAutoPlay = false;
+  let audioConfigPromise = null;
+
+  function loadAudioConfig() {
+    if (audioConfigPromise) return audioConfigPromise;
+    audioConfigPromise = fetch('/api/audio-config', { cache: 'no-store' })
+      .then(response => response.ok ? response.json() : { audioBaseUrl: '', version: Date.now() })
+      .catch(() => ({ audioBaseUrl: '', version: Date.now() }));
+    return audioConfigPromise;
+  }
 
   function allSlides() {
     return Array.from(document.querySelectorAll('.fs-slide'));
@@ -74,7 +83,7 @@
     return raw;
   }
 
-  function getAudioPath(slideIndex = getActiveSlideIndex()) {
+  async function getAudioPath(slideIndex = getActiveSlideIndex()) {
     const patient = getPatientSafe();
     if (!patient) return '';
     const folder = patient.audioFolder || `patient-${patient.id}-${slugify(patient.name)}`;
@@ -82,7 +91,13 @@
     const file = slideIndex === 0
       ? (patient.introAudioFile || 'intro.wav')
       : (line?.audioFile || `slide-${String(slideIndex).padStart(3, '0')}.wav`);
-    return `/audio/${folder}/${file}?v=${FALLBACK_VERSION}&ts=${Date.now()}`;
+    const config = await loadAudioConfig();
+    const version = Date.now() || config.version || FALLBACK_VERSION;
+    if (config.audioBaseUrl) {
+      const base = String(config.audioBaseUrl).replace(/\/+$/, '');
+      return `${base}/${folder}/${file}?v=${version}`;
+    }
+    return `/audio/${folder}/${file}?v=${version}`;
   }
 
   function getFallbackText(slideIndex = getActiveSlideIndex()) {
@@ -158,8 +173,8 @@
     window.speechSynthesis.speak(utterance);
   }
 
-  function playWithFallback(slideIndex = getActiveSlideIndex(), onEnded) {
-    const path = getAudioPath(slideIndex);
+  async function playWithFallback(slideIndex = getActiveSlideIndex(), onEnded) {
+    const path = await getAudioPath(slideIndex);
     const fallbackText = getFallbackText(slideIndex);
     const speaker = getFallbackSpeaker(slideIndex);
     const fromAutoPlay = typeof onEnded === 'function';

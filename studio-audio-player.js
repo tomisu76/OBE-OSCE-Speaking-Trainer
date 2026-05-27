@@ -1,6 +1,15 @@
 (() => {
   const VERSION = 'studio-audio-player-20260527b';
   let studioAudio = null;
+  let audioConfigPromise = null;
+
+  function loadAudioConfig() {
+    if (audioConfigPromise) return audioConfigPromise;
+    audioConfigPromise = fetch('/api/audio-config', { cache: 'no-store' })
+      .then(response => response.ok ? response.json() : { audioBaseUrl: '', version: Date.now() })
+      .catch(() => ({ audioBaseUrl: '', version: Date.now() }));
+    return audioConfigPromise;
+  }
 
   function slugify(value) {
     return String(value || '')
@@ -63,16 +72,21 @@
     return document.getElementById('editorSlideText')?.value?.trim() || '';
   }
 
-  function getAudioInfo() {
+  async function getAudioInfo() {
     const patient = getPatient();
     const slideIndex = getSlideIndex();
     if (!patient) return null;
     const folder = patient.audioFolder || `patient-${patient.id}-${slugify(patient.name)}`;
+    const config = await loadAudioConfig();
+    const version = Date.now() || config.version || VERSION;
+    const base = config.audioBaseUrl ? String(config.audioBaseUrl).replace(/\/+$/, '') : '';
 
     if (slideIndex === 0) {
       return {
         slideIndex,
-        path: `/audio/${folder}/${patient.introAudioFile || 'intro.wav'}?v=${VERSION}&ts=${Date.now()}`,
+        path: base
+          ? `${base}/${folder}/${patient.introAudioFile || 'intro.wav'}?v=${version}`
+          : `/audio/${folder}/${patient.introAudioFile || 'intro.wav'}?v=${version}`,
         text: getCurrentAudioTextFromEditor(0) || patient.introAudioText || `Patient ${patient.id}. ${patient.name}. ${patient.scenario || ''}`,
         speaker: 'intro'
       };
@@ -83,7 +97,9 @@
 
     return {
       slideIndex,
-      path: `/audio/${folder}/${audioFile}?v=${VERSION}&ts=${Date.now()}`,
+      path: base
+        ? `${base}/${folder}/${audioFile}?v=${version}`
+        : `/audio/${folder}/${audioFile}?v=${version}`,
       text: getCurrentAudioTextFromEditor(slideIndex) || line?.audioText || stripHtml(getCurrentVisibleTextFromEditor(slideIndex) || line?.text || ''),
       speaker: line?.speaker || document.getElementById('editorSpeaker')?.value || 'nurse'
     };
@@ -123,8 +139,8 @@
     window.speechSynthesis.speak(utterance);
   }
 
-  window.playStudioCurrentAudio = function playStudioCurrentAudio() {
-    const info = getAudioInfo();
+  window.playStudioCurrentAudio = async function playStudioCurrentAudio() {
+    const info = await getAudioInfo();
     if (!info) return;
     stopAudio();
 
