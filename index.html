@@ -75,6 +75,6 @@
     async function saveEditor(regenerateAudio){try{if(!adminCode)throw new Error('Missing admin code.');saveCurrentSlideToMemory();savePatientMetaToMemory();renderTabs();renderPatient(currentPatient);fillEditorSelect();document.getElementById('editorPatient').value=String(editorPatientIndex);populateSlideSelect();setEditorStatus(regenerateAudio?'Saving and starting new audio generation...':'Saving text...');const response=await fetch('/api/save-patients',{method:'POST',headers:{'Content-Type':'application/json','x-admin-key':adminCode},body:JSON.stringify({patients,regenerateAudio})});const result=await response.json().catch(()=>({}));if(!response.ok||!result.ok)throw new Error(result.message||'Save failed.');setEditorStatus(result.message||'Saved.')}catch(error){setEditorStatus(error.message)}}
     document.addEventListener('keydown',event=>{if(!document.body.classList.contains('fullscreen-mode'))return;if(event.key==='ArrowRight'||event.key===' '||event.key==='PageDown'){event.preventDefault();nextSlide()}if(event.key==='ArrowLeft'||event.key==='PageUp'){event.preventDefault();previousSlide()}if(event.key==='Escape')exitSlides()});document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&document.body.classList.contains('fullscreen-mode')){stopPresentationPlayback();document.body.classList.remove('fullscreen-mode');fullscreenStage.innerHTML='';fsSlides=[]}});init();
   </script>
-  <script src="editor.js"></script>
+  <script src="editor.js?v=stable-audio-20260527c"></script>
 </body>
 </html>
