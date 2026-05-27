@@ -52,7 +52,7 @@
         "speaker": "nurse",
         "label": "Nurse greeting",
         "text": "Good morning. My name is Anna. I am a practical nurse.",
-        "audioText": "Good morning. My name is blank. I am a practical nurse.",
+        "audioText": "Good morning. My name is Anna. I am a practical nurse.",
         "audioFile": "nurse-greeting.wav"
       },
       {
