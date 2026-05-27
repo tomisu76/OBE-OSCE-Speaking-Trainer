@@ -1,9 +1,14 @@
 (() => {
-  const AUDIO_LINK_VERSION = 'modern-editor-20260527b';
+  const AUDIO_LINK_VERSION = 'stable-audio-20260527c';
   const PLAY_FULL_TEXT = '▶ Play full presentation';
   const STOP_TEXT = '⏸ Stop';
   let directAudio = null;
   let directAutoPlay = false;
+
+  function applyEnglishLabels() {
+    const playAllButton = document.getElementById('playAllButton');
+    if (playAllButton) playAllButton.textContent = directAutoPlay ? STOP_TEXT : PLAY_FULL_TEXT;
+  }
 
   function setAutoPlaying(value) {
     directAutoPlay = Boolean(value);
@@ -11,104 +16,23 @@
     applyEnglishLabels();
   }
 
-  function applyEnglishLabels() {
-    const playAllButton = document.getElementById('playAllButton');
-    if (playAllButton) playAllButton.textContent = directAutoPlay ? STOP_TEXT : PLAY_FULL_TEXT;
-  }
+  window.updatePlayAllButton = applyEnglishLabels;
 
-  window.updatePlayAllButton = function updatePlayAllButtonEnglish() {
-    applyEnglishLabels();
-  };
-
-  function injectMobilePolishStyles() {
-    if (document.getElementById('mobile-polish-styles')) return;
+  function injectPolishStyles() {
+    if (document.getElementById('obe-editor-polish-styles')) return;
     const style = document.createElement('style');
-    style.id = 'mobile-polish-styles';
-    style.textContent = `
-      body.fullscreen-mode .fullscreen-stage{
-        min-height:100dvh!important;
-        height:100dvh!important;
-        padding:max(12px, env(safe-area-inset-top)) 12px calc(112px + env(safe-area-inset-bottom))!important;
-        align-items:center!important;
-        justify-content:center!important;
-      }
-      body.fullscreen-mode .fs-slide.active{height:100dvh!important;align-items:center!important;justify-content:center!important;}
-      .fs-card,.fs-line{scrollbar-width:none;}
-      .fs-card::-webkit-scrollbar,.fs-line::-webkit-scrollbar{display:none;}
-      body.presentation-auto-playing .fs-slide .slide-audio-btn{opacity:.55!important;pointer-events:none!important;filter:grayscale(.15)!important;}
-      @media(max-width:920px){.fs-line{font-size:clamp(1.65rem,5.7vw,3rem)!important;line-height:1.18!important;}.vital-tag{white-space:nowrap!important;}}
-      @media(max-width:640px){
-        body.fullscreen-mode .fullscreen-stage{padding:max(10px, env(safe-area-inset-top)) 10px calc(116px + env(safe-area-inset-bottom))!important;}
-        .fs-card,.fs-line{width:94vw!important;max-height:calc(100dvh - 176px)!important;border-radius:22px!important;border-width:3px!important;padding:clamp(18px,5vw,24px)!important;box-shadow:0 10px 28px rgba(0,0,0,.22)!important;}
-        .fs-line{font-size:clamp(1.42rem,5.7vw,1.9rem)!important;line-height:1.2!important;letter-spacing:0!important;word-spacing:.01em!important;}
-        .speaker{font-size:.43em!important;letter-spacing:.15em!important;margin-bottom:12px!important;}
-        .vital-tag{display:inline-flex!important;white-space:nowrap!important;font-size:.76em!important;line-height:1!important;padding:.14em .52em!important;margin:.03em .12em!important;vertical-align:.03em!important;max-width:none!important;}
-        .slide-audio-btn{font-size:clamp(.95rem,4vw,1.05rem)!important;line-height:1.05!important;padding:10px 18px!important;margin-top:20px!important;border-radius:999px!important;}
-        .controls{width:94vw!important;left:50%!important;bottom:calc(8px + env(safe-area-inset-bottom))!important;transform:translateX(-50%)!important;padding:8px!important;gap:6px!important;border-radius:28px!important;justify-content:space-between!important;}
-        .controls button{font-size:.78rem!important;line-height:1.08!important;padding:10px 10px!important;min-width:0!important;}
-        .controls .audio-control{max-width:150px!important;white-space:normal!important;}
-        .controls span{min-width:44px!important;font-size:.8rem!important;}
-        .vitals-grid{grid-template-columns:1fr 1fr!important;gap:8px!important;}
-        .vital-box{font-size:.9rem!important;padding:10px!important;border-radius:14px!important;}
-        .vital-box span{font-size:1.35rem!important;}
-        .vital-box small{font-size:.78rem!important;}
-      }
-      @media(max-width:390px){
-        .fs-card,.fs-line{width:93vw!important;padding:18px!important;max-height:calc(100dvh - 170px)!important;}
-        .fs-line{font-size:clamp(1.28rem,5.45vw,1.68rem)!important;line-height:1.22!important;}
-        .vital-tag{font-size:.72em!important;padding:.13em .46em!important;}
-        .slide-audio-btn{font-size:.92rem!important;padding:9px 15px!important;}
-        .controls{width:95vw!important;gap:5px!important;padding:7px!important;}
-        .controls button{font-size:.7rem!important;padding:9px 8px!important;}
-        .controls .audio-control{max-width:136px!important;}
-        .controls span{min-width:38px!important;font-size:.72rem!important;}
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
-  function injectModernEditorStyles() {
-    if (document.getElementById('modern-editor-styles')) return;
-    const style = document.createElement('style');
-    style.id = 'modern-editor-styles';
+    style.id = 'obe-editor-polish-styles';
     style.textContent = `
       body{background:linear-gradient(180deg,#eef6ff 0,#f8fbff 52%,#eef6ff 100%)!important;}
-      .panel-card{max-width:760px!important;border-radius:24px!important;padding:24px!important;}
       .admin-open{background:#0f4c81!important;color:white!important;border:none!important;padding:12px 20px!important;box-shadow:0 10px 26px rgba(15,76,129,.22)!important;}
       .editor.show{display:block!important;}
-      .editor{
-        width:min(1380px,96vw)!important;
-        max-width:1380px!important;
-        margin:28px auto!important;
-        padding:0!important;
-        overflow:hidden!important;
-        background:#ffffff!important;
-        border:1px solid #dbeafe!important;
-        border-radius:28px!important;
-        box-shadow:0 24px 70px rgba(15,76,129,.18)!important;
-        text-align:left!important;
-      }
+      .editor{width:min(1380px,96vw)!important;max-width:1380px!important;margin:28px auto!important;padding:0!important;overflow:hidden!important;background:#fff!important;border:1px solid #dbeafe!important;border-radius:28px!important;box-shadow:0 24px 70px rgba(15,76,129,.18)!important;text-align:left!important;}
       .editor::before{content:'Teacher Workspace';display:block;background:linear-gradient(135deg,#0f4c81,#0b6aa8);color:white;font-weight:900;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;padding:12px 26px;}
       .editor h2{margin:0!important;padding:24px 28px 4px!important;color:#082f49!important;font-size:clamp(1.45rem,2.6vw,2.1rem)!important;}
       .editor>p.hint{margin:0 28px 18px!important;color:#475569!important;font-size:1rem!important;}
-      .editor-grid{
-        display:grid!important;
-        grid-template-columns:minmax(210px,250px) minmax(0,1fr)!important;
-        gap:14px 18px!important;
-        padding:0 28px 24px!important;
-        align-items:start!important;
-      }
+      .editor-grid{display:grid!important;grid-template-columns:minmax(210px,250px) minmax(0,1fr)!important;gap:14px 18px!important;padding:0 28px 24px!important;align-items:start!important;}
       .editor label{color:#334155!important;font-size:.82rem!important;letter-spacing:.08em!important;text-transform:uppercase!important;font-weight:900!important;padding-top:13px!important;}
-      .editor input,.editor textarea,.editor select{
-        border:1px solid #cbd5e1!important;
-        border-radius:16px!important;
-        padding:13px 14px!important;
-        font-size:1rem!important;
-        color:#0f172a!important;
-        background:#f8fafc!important;
-        box-shadow:inset 0 1px 0 rgba(255,255,255,.75)!important;
-        transition:border .15s ease, box-shadow .15s ease, background .15s ease!important;
-      }
+      .editor input,.editor textarea,.editor select{border:1px solid #cbd5e1!important;border-radius:16px!important;padding:13px 14px!important;font-size:1rem!important;color:#0f172a!important;background:#f8fafc!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.75)!important;transition:border .15s ease,box-shadow .15s ease,background .15s ease!important;}
       .editor input:focus,.editor textarea:focus,.editor select:focus{outline:none!important;border-color:#38bdf8!important;background:white!important;box-shadow:0 0 0 4px rgba(56,189,248,.18)!important;}
       .editor textarea{min-height:112px!important;line-height:1.55!important;resize:vertical!important;}
       .editor .small-json{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;font-size:.93rem!important;background:#f1f5f9!important;}
@@ -116,56 +40,54 @@
       .editor .audio-text{min-height:160px!important;background:#eef6ff!important;border-color:#bfdbfe!important;}
       .slide-nav{gap:10px!important;align-items:center!important;}
       .slide-nav button,.editor-actions button{border:none!important;border-radius:14px!important;padding:12px 16px!important;font-weight:900!important;box-shadow:0 8px 20px rgba(15,23,42,.12)!important;}
-      .slide-nav button{background:#0f4c81!important;color:white!important;}
-      .slide-nav .danger{background:#dc2626!important;color:white!important;}
+      .slide-nav button{background:#0f4c81!important;color:white!important;}.slide-nav .danger{background:#dc2626!important;color:white!important;}
       .editor-actions{position:sticky!important;bottom:0!important;z-index:20!important;margin:0!important;padding:18px 28px!important;background:rgba(255,255,255,.92)!important;backdrop-filter:blur(10px)!important;border-top:1px solid #e2e8f0!important;justify-content:flex-end!important;}
-      .save-only{background:#0f4c81!important;color:white!important;}.save-generate{background:#ea580c!important;color:white!important;}.close-editor{background:#64748b!important;color:white!important;}
+      .save-only{background:#0f4c81!important;color:white!important}.save-generate{background:#ea580c!important;color:white!important}.close-editor{background:#64748b!important;color:white!important}
       .editor-status{margin:0!important;padding:0 28px 18px!important;color:#0f4c81!important;font-size:1rem!important;}
       .slide-preview{background:linear-gradient(180deg,#fff,#f8fbff)!important;border:1px solid #bfdbfe!important;border-radius:20px!important;padding:18px!important;color:#0f172a!important;box-shadow:0 12px 28px rgba(15,76,129,.08)!important;}
       .audio-file{background:#dbeafe!important;color:#1e3a8a!important;border-radius:999px!important;padding:8px 12px!important;font-size:.95rem!important;}
-      .modern-editor-shell{padding:0 28px 22px!important;}
       .modern-editor-toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:0 28px 20px;padding:16px;border-radius:20px;background:#f1f7ff;border:1px solid #dbeafe;}
-      .modern-editor-toolbar strong{font-size:1.05rem;color:#082f49;}.modern-editor-toolbar span{color:#64748b;font-size:.95rem;}
-      .modern-chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.modern-chip{border-radius:999px;background:#e0f2fe;color:#075985;font-weight:900;font-size:.78rem;padding:5px 9px;}
-      .slide-list-wrap{margin:0 28px 22px;padding:16px;border:1px solid #e2e8f0;border-radius:22px;background:#f8fafc;}
-      .slide-list-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 12px;color:#082f49;font-weight:900;}
-      .slide-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;max-height:320px;overflow:auto;padding:4px;}
-      .slide-card{border:1px solid #cbd5e1;background:white;border-radius:18px;padding:13px;text-align:left;cursor:pointer;color:#334155;font-weight:800;box-shadow:0 6px 16px rgba(15,23,42,.06);transition:.15s ease;}
-      .slide-card:hover{transform:translateY(-2px);border-color:#38bdf8;box-shadow:0 10px 22px rgba(15,76,129,.13);}
-      .slide-card.active{border:3px solid #0f4c81;background:#eff6ff;}
-      .slide-card small{display:block;color:#64748b;margin-bottom:6px;font-size:.77rem;}.slide-card .line-speaker{display:inline-block;background:#e0f2fe;color:#075985;border-radius:999px;padding:3px 9px;font-size:.76rem;margin-bottom:7px;}.slide-card .line-speaker.patient{background:#dcfce7;color:#166534;}.slide-card .line-text{display:block;font-size:.92rem;line-height:1.35;color:#0f172a;}.slide-card .line-audio{display:block;margin-top:7px;font-size:.8rem;color:#64748b;font-weight:700;}
+      .modern-editor-toolbar strong{font-size:1.05rem;color:#082f49}.modern-editor-toolbar span{color:#64748b;font-size:.95rem}.modern-chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.modern-chip{border-radius:999px;background:#e0f2fe;color:#075985;font-weight:900;font-size:.78rem;padding:5px 9px;}
+      .slide-list-wrap{margin:0 28px 22px;padding:16px;border:1px solid #e2e8f0;border-radius:22px;background:#f8fafc}.slide-list-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 12px;color:#082f49;font-weight:900}.slide-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;max-height:320px;overflow:auto;padding:4px;}
+      .slide-card{border:1px solid #cbd5e1;background:white;border-radius:18px;padding:13px;text-align:left;cursor:pointer;color:#334155;font-weight:800;box-shadow:0 6px 16px rgba(15,23,42,.06);transition:.15s ease;}.slide-card:hover{transform:translateY(-2px);border-color:#38bdf8;box-shadow:0 10px 22px rgba(15,76,129,.13);}.slide-card.active{border:3px solid #0f4c81;background:#eff6ff}.slide-card small{display:block;color:#64748b;margin-bottom:6px;font-size:.77rem}.slide-card .line-speaker{display:inline-block;background:#e0f2fe;color:#075985;border-radius:999px;padding:3px 9px;font-size:.76rem;margin-bottom:7px}.slide-card .line-speaker.patient{background:#dcfce7;color:#166534}.slide-card .line-text{display:block;font-size:.92rem;line-height:1.35;color:#0f172a}.slide-card .line-audio{display:block;margin-top:7px;font-size:.8rem;color:#64748b;font-weight:700;}
+      body.fullscreen-mode .fullscreen-stage{min-height:100dvh!important;height:100dvh!important;padding:max(12px,env(safe-area-inset-top)) 12px calc(112px + env(safe-area-inset-bottom))!important;align-items:center!important;justify-content:center!important;}body.presentation-auto-playing .fs-slide .slide-audio-btn{opacity:.55!important;pointer-events:none!important;filter:grayscale(.15)!important;}
       @media(max-width:900px){.editor-grid{grid-template-columns:1fr!important;padding:0 18px 20px!important}.editor label{padding-top:0!important}.modern-editor-toolbar,.slide-list-wrap{margin-left:18px!important;margin-right:18px!important}.editor h2{padding-left:18px!important}.editor>p.hint{margin-left:18px!important;margin-right:18px!important}.editor-actions{padding:14px 18px!important;justify-content:stretch!important}.editor-actions button{flex:1 1 180px}.slide-list{grid-template-columns:1fr!important}}
+      @media(max-width:640px){.fs-card,.fs-line{width:94vw!important;max-height:calc(100dvh - 176px)!important;border-radius:22px!important;border-width:3px!important;padding:clamp(18px,5vw,24px)!important}.fs-line{font-size:clamp(1.42rem,5.7vw,1.9rem)!important;line-height:1.2!important}.controls{width:94vw!important;bottom:calc(8px + env(safe-area-inset-bottom))!important;border-radius:28px!important;justify-content:space-between!important}.controls button{font-size:.78rem!important;padding:10px!important}.controls .audio-control{max-width:150px!important;white-space:normal!important}.vitals-grid{grid-template-columns:1fr 1fr!important}}
     `;
     document.head.appendChild(style);
   }
 
-  function stripTags(value) {
-    return String(value || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+  function stripTags(value) { return String(value || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim(); }
+  function truncate(value, length = 110) { const text = String(value || ''); return text.length > length ? `${text.slice(0, length - 1)}…` : text; }
+
+  function getLine(patient, index) {
+    if (!patient || index <= 0) return null;
+    const raw = (patient.lines || [])[index - 1];
+    return window.normalizeLine ? normalizeLine(raw, index - 1, patient) : raw;
   }
 
-  function truncate(value, length = 110) {
-    const text = String(value || '');
-    return text.length > length ? `${text.slice(0, length - 1)}…` : text;
+  function stableAudioPath(slideIndex = getActiveSlideIndex()) {
+    const patient = window.getPatient?.();
+    if (!patient) return '';
+    const folder = patient.audioFolder || `patient-${patient.id}-${String(patient.name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}`;
+    const file = slideIndex === 0 ? (patient.introAudioFile || 'intro.wav') : (getLine(patient, slideIndex)?.audioFile || 'missing-audio.wav');
+    return `/audio/${folder}/${file}?v=${AUDIO_LINK_VERSION}`;
   }
 
   function ensureModernEditorUI() {
     const editor = document.getElementById('editor');
     if (!editor || editor.dataset.modernized === '1') return;
     editor.dataset.modernized = '1';
-
     const title = editor.querySelector('h2');
     if (title) title.textContent = 'Admin editor';
-
     const firstHint = editor.querySelector(':scope > .hint');
-    if (firstHint) firstHint.textContent = 'Edit patient cases, OBE metadata, visible slide text, and clean audio text in one workspace.';
-
+    if (firstHint) firstHint.textContent = 'Edit patient cases, stable slide audio files, visible slide text, and clean audio text in one workspace.';
+    const grid = editor.querySelector('.editor-grid');
     const toolbar = document.createElement('div');
     toolbar.id = 'modernEditorToolbar';
     toolbar.className = 'modern-editor-toolbar';
-    toolbar.innerHTML = '<div><strong>Current case</strong><div id="modernEditorCaseName">Select a patient</div><div id="modernEditorChips" class="modern-chip-row"></div></div><div><span>Tip: save text first, regenerate audio only when final.</span></div>';
-    const grid = editor.querySelector('.editor-grid');
+    toolbar.innerHTML = '<div><strong>Current case</strong><div id="modernEditorCaseName">Select a patient</div><div id="modernEditorChips" class="modern-chip-row"></div></div><div><span>Slide numbers are visual. Audio filenames are stable.</span></div>';
     if (grid) editor.insertBefore(toolbar, grid);
-
     const slideWrap = document.createElement('div');
     slideWrap.id = 'slideListWrap';
     slideWrap.className = 'slide-list-wrap';
@@ -180,7 +102,7 @@
     if (!patient || !nameBox || !chipsBox) return;
     nameBox.textContent = `Patient ${patient.id} — ${patient.name || 'Unnamed patient'}`;
     const chips = [patient.course, patient.week, ...(patient.clo || []), patient.skill].filter(Boolean).slice(0, 6);
-    chipsBox.innerHTML = chips.map(chip => `<span class="modern-chip">${window.escapeHtml ? escapeHtml(chip) : chip}</span>`).join('');
+    chipsBox.innerHTML = chips.map(chip => `<span class="modern-chip">${escapeHtml(chip)}</span>`).join('');
   }
 
   function renderEditorSlideList() {
@@ -188,34 +110,28 @@
     const list = document.getElementById('editorSlideList');
     const patient = window.getEditedPatient?.();
     if (!list || !patient) return;
-    const lines = (patient.lines || []).map(line => window.normalizeLine ? normalizeLine(line) : { speaker: line[0], text: line[1], audioText: line[2] });
     const currentIndex = typeof editorSlideIndex === 'number' ? editorSlideIndex : 0;
-    const cards = [`<button type="button" class="slide-card ${currentIndex === 0 ? 'active' : ''}" onclick="selectEditorSlide(0)"><small>slide-000.wav</small><span class="line-speaker">Intro</span><span class="line-text">${escapeHtml(truncate(patient.scenario || 'Patient intro', 120))}</span><span class="line-audio">Audio: ${escapeHtml(truncate(patient.introAudioText || '', 90))}</span></button>`];
-    lines.forEach((line, index) => {
+    const cards = [`<button type="button" class="slide-card ${currentIndex === 0 ? 'active' : ''}" onclick="selectEditorSlide(0)"><small>slide-000 · ${escapeHtml(patient.introAudioFile || 'intro.wav')}</small><span class="line-speaker">Intro</span><span class="line-text">${escapeHtml(truncate(patient.scenario || 'Patient intro', 120))}</span><span class="line-audio">Audio: ${escapeHtml(truncate(patient.introAudioText || '', 90))}</span></button>`];
+    (patient.lines || []).forEach((raw, index) => {
+      const line = window.normalizeLine ? normalizeLine(raw, index, patient) : raw;
       const slideNumber = index + 1;
       const speakerLabel = line.speaker === 'patient' ? 'Patient' : 'Practical nurse';
-      cards.push(`<button type="button" class="slide-card ${currentIndex === slideNumber ? 'active' : ''}" onclick="selectEditorSlide(${slideNumber})"><small>slide-${pad(slideNumber)}.wav</small><span class="line-speaker ${line.speaker === 'patient' ? 'patient' : ''}">${speakerLabel}</span><span class="line-text">${escapeHtml(truncate(stripTags(line.text), 120))}</span><span class="line-audio">Audio: ${escapeHtml(truncate(line.audioText || makeAudioText(line.text), 90))}</span></button>`);
+      cards.push(`<button type="button" class="slide-card ${currentIndex === slideNumber ? 'active' : ''}" onclick="selectEditorSlide(${slideNumber})"><small>slide-${pad(slideNumber)} · ${escapeHtml(line.audioFile || '')}</small><span class="line-speaker ${line.speaker === 'patient' ? 'patient' : ''}">${speakerLabel}</span><span class="line-text">${escapeHtml(truncate(stripTags(line.text), 120))}</span><span class="line-audio">Audio: ${escapeHtml(truncate(line.audioText || makeAudioText(line.text), 90))}</span></button>`);
     });
     list.innerHTML = cards.join('');
     renderModernEditorSummary();
   }
 
   function selectEditorSlideModern(slideNumber) {
-    try {
-      window.saveCurrentSlideToMemory?.();
-      window.savePatientMetaToMemory?.();
-    } catch (error) {
-      window.setEditorStatus?.(error.message);
-      return;
-    }
+    try { window.saveCurrentSlideToMemory?.(); window.savePatientMetaToMemory?.(); }
+    catch (error) { window.setEditorStatus?.(error.message); return; }
     editorSlideIndex = Number(slideNumber) || 0;
     window.populateSlideSelect?.();
     window.loadSlideIntoEditor?.();
     renderEditorSlideList();
   }
 
-  injectMobilePolishStyles();
-  injectModernEditorStyles();
+  injectPolishStyles();
   applyEnglishLabels();
 
   document.addEventListener('click', (event) => {
@@ -230,14 +146,6 @@
     const slides = Array.from(document.querySelectorAll('.fs-slide'));
     const index = slides.findIndex(slide => slide.classList.contains('active'));
     return index >= 0 ? index : 0;
-  }
-
-  function getDirectAudioPath(slideIndex = getActiveSlideIndex()) {
-    const patient = window.getPatient?.();
-    if (!patient) return '';
-    const folder = patient.audioFolder || `patient-${patient.id}-${String(patient.name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}`;
-    const fileNumber = String(slideIndex).padStart(3, '0');
-    return `/audio/${folder}/slide-${fileNumber}.wav?v=${AUDIO_LINK_VERSION}`;
   }
 
   function stopDirectAudio() {
@@ -261,28 +169,14 @@
   window.playCurrentAudio = function playCurrentAudioDirect(onEnded) {
     const fromAutoPlay = typeof onEnded === 'function';
     if (directAutoPlay && !fromAutoPlay) return;
-
-    const slideIndex = getActiveSlideIndex();
-    const path = getDirectAudioPath(slideIndex);
+    const path = stableAudioPath(getActiveSlideIndex());
     if (!path) return;
-
     stopDirectAudio();
     directAudio = new Audio(path);
     directAudio.preload = 'auto';
-    directAudio.onended = () => {
-      directAudio = null;
-      if (fromAutoPlay) onEnded();
-    };
-    directAudio.onerror = () => {
-      console.error('OBE OSCE audio load failed:', path);
-      if (fromAutoPlay) setTimeout(onEnded, 300);
-      else showAudioError(path);
-    };
-    directAudio.play().catch((error) => {
-      console.warn('OBE OSCE audio start blocked/interrupted:', error?.name || error, path);
-      if (fromAutoPlay) setTimeout(onEnded, 300);
-      else if (!directAutoPlay) showAudioError(path);
-    });
+    directAudio.onended = () => { directAudio = null; if (fromAutoPlay) onEnded(); };
+    directAudio.onerror = () => { if (fromAutoPlay) setTimeout(onEnded, 300); else showAudioError(path); };
+    directAudio.play().catch(() => { if (fromAutoPlay) setTimeout(onEnded, 300); else if (!directAutoPlay) showAudioError(path); });
   };
 
   window.togglePresentationPlayback = function toggleDirectPresentationPlayback() {
@@ -293,10 +187,8 @@
       if (button) button.textContent = PLAY_FULL_TEXT;
       return;
     }
-
     setAutoPlaying(true);
     if (button) button.textContent = STOP_TEXT;
-
     const playThenNext = () => {
       if (!directAutoPlay) return;
       const slides = Array.from(document.querySelectorAll('.fs-slide'));
@@ -313,7 +205,6 @@
         setTimeout(playThenNext, 450);
       });
     };
-
     playThenNext();
   };
 
@@ -328,10 +219,10 @@
 
   const originalGetAudioPath = window.getAudioPath;
   if (typeof originalGetAudioPath === 'function') {
-    window.getAudioPath = function getFixedAudioPath(patient, slideNumber) {
-      const originalPath = String(originalGetAudioPath(patient, slideNumber) || '');
-      const cleanPath = originalPath.split('?')[0].replace(/^\/+/, '');
-      return `/${cleanPath}?v=${AUDIO_LINK_VERSION}`;
+    window.getAudioPath = function getStableAudioPath(patient, slideNumber) {
+      const file = Number(slideNumber) === 0 ? (patient.introAudioFile || 'intro.wav') : (window.normalizeLine ? normalizeLine((patient.lines || [])[Number(slideNumber) - 1], Number(slideNumber) - 1, patient).audioFile : 'missing-audio.wav');
+      const folder = patient.audioFolder || `patient-${patient.id}-${String(patient.name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}`;
+      return `/audio/${folder}/${file}?v=${AUDIO_LINK_VERSION}`;
     };
   }
 
@@ -344,40 +235,14 @@
   const originalChangeEditorPatient = window.changeEditorPatient;
   const originalChangeEditorSlide = window.changeEditorSlide;
 
-  window.openEditor = function openModernEditor() {
-    originalOpenEditor?.();
-    ensureModernEditorUI();
-    renderEditorSlideList();
-  };
-  window.loadPatientIntoEditor = function loadModernPatientIntoEditor() {
-    originalLoadPatientIntoEditor?.();
-    ensureModernEditorUI();
-    renderEditorSlideList();
-  };
-  window.populateSlideSelect = function populateModernSlideSelect() {
-    originalPopulateSlideSelect?.();
-    renderEditorSlideList();
-  };
-  window.loadSlideIntoEditor = function loadModernSlideEditor() {
-    originalLoadSlideIntoEditor?.();
-    renderEditorSlideList();
-  };
-  window.markEditorDirty = function markModernEditorDirty() {
-    originalMarkEditorDirty?.();
-    renderEditorSlideList();
-  };
-  window.changeEditorPatient = function changeModernEditorPatient() {
-    originalChangeEditorPatient?.();
-    renderEditorSlideList();
-  };
-  window.changeEditorSlide = function changeModernEditorSlide() {
-    originalChangeEditorSlide?.();
-    renderEditorSlideList();
-  };
-  window.saveEditor = async function saveModernEditor(regenerateAudio) {
-    await originalSaveEditor?.(regenerateAudio);
-    renderEditorSlideList();
-  };
+  window.openEditor = function openModernEditor() { originalOpenEditor?.(); ensureModernEditorUI(); renderEditorSlideList(); };
+  window.loadPatientIntoEditor = function loadModernPatientIntoEditor() { originalLoadPatientIntoEditor?.(); ensureModernEditorUI(); renderEditorSlideList(); };
+  window.populateSlideSelect = function populateModernSlideSelect() { originalPopulateSlideSelect?.(); renderEditorSlideList(); };
+  window.loadSlideIntoEditor = function loadModernSlideEditor() { originalLoadSlideIntoEditor?.(); renderEditorSlideList(); };
+  window.markEditorDirty = function markModernEditorDirty() { originalMarkEditorDirty?.(); renderEditorSlideList(); };
+  window.changeEditorPatient = function changeModernEditorPatient() { originalChangeEditorPatient?.(); renderEditorSlideList(); };
+  window.changeEditorSlide = function changeModernEditorSlide() { originalChangeEditorSlide?.(); renderEditorSlideList(); };
+  window.saveEditor = async function saveModernEditor(regenerateAudio) { await originalSaveEditor?.(regenerateAudio); renderEditorSlideList(); };
   window.selectEditorSlide = selectEditorSlideModern;
   window.renderEditorSlideList = renderEditorSlideList;
 })();
