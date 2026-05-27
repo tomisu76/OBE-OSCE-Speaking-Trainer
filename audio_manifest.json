@@ -49,8 +49,8 @@
     "label": "New slide",
     "speaker": "patient",
     "voice": "male_patient",
-    "text": "hi you",
-    "ttsText": "hi you",
+    "text": "hi you shit, my name is michal black",
+    "ttsText": "hi you shit, my name is michal black",
     "audioFile": "new-slide.wav",
     "audioPath": "audio/patient-1-john-white/new-slide.wav"
   },
@@ -63,8 +63,8 @@
     "label": "New slide",
     "speaker": "nurse",
     "voice": "female_nurse",
-    "text": "This is testing slide. we need to know how to sound generated. Bye",
-    "ttsText": "This is testing slide. we need to know how to sound generated. Bye",
+    "text": "Bye",
+    "ttsText": "Bye",
     "audioFile": "new-slide-2.wav",
     "audioPath": "audio/patient-1-john-white/new-slide-2.wav"
   },
