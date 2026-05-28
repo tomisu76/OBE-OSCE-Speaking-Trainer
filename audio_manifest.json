@@ -35,8 +35,8 @@
     "label": "New slide",
     "speaker": "nurse",
     "voice": "female_nurse",
-    "text": "shit",
-    "ttsText": "shit",
+    "text": "hi",
+    "ttsText": "hi",
     "audioFile": "new-slide-3.wav",
     "audioPath": "audio/patient-1-john-white/new-slide-3.wav"
   },
@@ -63,8 +63,8 @@
     "label": "New slide",
     "speaker": "patient",
     "voice": "male_patient",
-    "text": "hi",
-    "ttsText": "hi",
+    "text": "bye",
+    "ttsText": "bye",
     "audioFile": "new-slide-2.wav",
     "audioPath": "audio/patient-1-john-white/new-slide-2.wav"
   },
