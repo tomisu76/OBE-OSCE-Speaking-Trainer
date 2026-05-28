@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "node scripts/build_app_variant.mjs",
+    "build:trainer": "APP_VARIANT=trainer node scripts/build_app_variant.mjs",
+    "build:editor": "APP_VARIANT=editor node scripts/build_app_variant.mjs",
     "normalize": "node scripts/normalize_patient_texts.mjs",
     "manifest": "node scripts/extract_audio_manifest.mjs",
     "audio:test": "python scripts/generate_audio.py --limit 5 --overwrite",
