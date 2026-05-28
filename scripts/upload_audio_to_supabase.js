@@ -42,9 +42,9 @@ async function uploadFile(filePath) {
       apikey: serviceRoleKey,
       'Content-Type': 'audio/wav',
       'Cache-Control': 'max-age=60',
-      'x-upsert': 'true',
-      duplex: 'half'
+      'x-upsert': 'true'
     },
+    duplex: 'half',
     body: createReadStream(filePath)
   });
 
