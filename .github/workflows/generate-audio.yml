@@ -56,6 +56,13 @@ jobs:
       - name: Regenerate and overwrite all Kokoro audio files
         run: npm run audio:all
 
+      - name: Upload generated audio to Supabase Storage
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_AUDIO_BUCKET: ${{ secrets.SUPABASE_AUDIO_BUCKET }}
+        run: npm run audio:upload:supabase
+
       - name: Show generated audio count
         run: |
           echo "Generated WAV files:"
