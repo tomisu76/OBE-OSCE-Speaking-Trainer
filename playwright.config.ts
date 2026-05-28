@@ -11,7 +11,7 @@ export default defineConfig({
     trace: 'on-first-retry'
   },
   webServer: {
-    command: 'npx http-server . -p 4173 -c-1',
+    command: 'npm run build && npx http-server dist -p 4173 -c-1',
     url: 'http://127.0.0.1:4173',
     reuseExistingServer: true,
     timeout: 120_000
