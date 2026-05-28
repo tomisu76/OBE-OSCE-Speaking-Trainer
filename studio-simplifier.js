@@ -1,7 +1,9 @@
 (() => {
-  const VERSION = 'studio-simplifier-20260528a';
+  const VERSION = 'studio-simplifier-20260528b';
 
   function currentSlideIndex() {
+    const selectValue = document.getElementById('editorSlide')?.value;
+    if (selectValue !== undefined && selectValue !== '') return Number(selectValue) || 0;
     try { return typeof editorSlideIndex === 'number' ? editorSlideIndex : 0; }
     catch { return 0; }
   }
@@ -16,41 +18,61 @@
       .trim();
   }
 
-  function findLabel(grid, text) {
-    return Array.from(grid.querySelectorAll('label')).find(label => label.textContent.trim() === text) || null;
+  function labelBefore(control) {
+    if (!control) return null;
+    let node = control.previousElementSibling;
+    while (node && node.tagName !== 'LABEL') node = node.previousElementSibling;
+    return node;
   }
 
-  function pair(grid, text) {
-    const label = findLabel(grid, text);
-    if (!label) return null;
-    return { label, control: label.nextElementSibling };
+  function relabel(id, text) {
+    const label = labelBefore(document.getElementById(id));
+    if (label) label.textContent = text;
+    return label;
   }
 
-  function appendPair(section, item) {
-    if (!item || !item.label || !item.control) return;
+  function fieldById(id, text) {
+    const control = document.getElementById(id);
+    const label = relabel(id, text);
+    if (!control || !label) return null;
+    return { label, control };
+  }
+
+  function appendField(section, item) {
+    if (!section || !item?.label || !item?.control) return;
     section.appendChild(item.label);
     section.appendChild(item.control);
   }
 
-  function ensureCopyButton(audioControl) {
-    if (!audioControl || document.getElementById('copyCleanSlideTextToAudio')) return;
-    const wrapper = document.createElement('div');
-    wrapper.className = 'studio-audio-helper';
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.id = 'copyCleanSlideTextToAudio';
-    button.className = 'studio-copy-audio';
-    button.textContent = 'Copy clean slide text to audio text';
-    button.addEventListener('click', () => {
-      if (currentSlideIndex() === 0) return;
-      const slideText = document.getElementById('editorSlideText');
-      const audioText = document.getElementById('editorAudioText');
-      if (!slideText || !audioText) return;
-      audioText.value = cleanText(slideText.value);
-      audioText.dispatchEvent(new Event('input', { bubbles: true }));
-    });
-    wrapper.appendChild(button);
-    audioControl.parentNode.insertBefore(wrapper, audioControl);
+  function ensureAudioGroup(audioText) {
+    if (!audioText) return null;
+    let group = document.getElementById('studioAudioTextGroup');
+    if (!group) {
+      group = document.createElement('div');
+      group.id = 'studioAudioTextGroup';
+      group.className = 'studio-audio-group';
+      audioText.parentNode.insertBefore(group, audioText);
+      group.appendChild(audioText);
+    }
+    let button = document.getElementById('copyCleanSlideTextToAudio');
+    if (!button) {
+      button = document.createElement('button');
+      button.type = 'button';
+      button.id = 'copyCleanSlideTextToAudio';
+      button.className = 'studio-copy-audio';
+      button.textContent = 'Copy clean slide text to audio text';
+      button.addEventListener('click', () => {
+        if (currentSlideIndex() === 0) return;
+        const slideText = document.getElementById('editorSlideText');
+        const audio = document.getElementById('editorAudioText');
+        if (!slideText || !audio) return;
+        audio.value = cleanText(slideText.value);
+        audio.dispatchEvent(new Event('input', { bubbles: true }));
+        window.markEditorDirty?.();
+      });
+      group.prepend(button);
+    }
+    return group;
   }
 
   function syncIntroFields() {
@@ -62,23 +84,28 @@
     const copyButton = document.getElementById('copyCleanSlideTextToAudio');
 
     if (copyButton) copyButton.disabled = isIntro;
-    if (!isIntro || !slideText || !audioText || !scenario || !introAudio) return;
+    if (!slideText || !audioText) return;
 
-    slideText.readOnly = false;
-    audioText.readOnly = false;
-    slideText.classList.remove('readonly-note');
-    audioText.classList.remove('readonly-note');
-    slideText.value = scenario.value || '';
-    audioText.value = introAudio.value || '';
+    if (isIntro) {
+      if (scenario && slideText.value !== scenario.value) slideText.value = scenario.value || '';
+      if (introAudio && audioText.value !== introAudio.value) audioText.value = introAudio.value || '';
+      slideText.readOnly = false;
+      audioText.readOnly = false;
+      slideText.classList.remove('readonly-note');
+      audioText.classList.remove('readonly-note');
+      slideText.oninput = () => {
+        if (scenario) scenario.value = slideText.value;
+        window.markEditorDirty?.();
+      };
+      audioText.oninput = () => {
+        if (introAudio) introAudio.value = audioText.value;
+        window.markEditorDirty?.();
+      };
+      return;
+    }
 
-    slideText.oninput = () => {
-      scenario.value = slideText.value;
-      window.markEditorDirty?.();
-    };
-    audioText.oninput = () => {
-      introAudio.value = audioText.value;
-      window.markEditorDirty?.();
-    };
+    slideText.oninput = () => window.markEditorDirty?.();
+    audioText.oninput = () => window.markEditorDirty?.();
   }
 
   function simplifyInspector() {
@@ -94,17 +121,12 @@
       if (subtitle) subtitle.textContent = 'Edit slide text and audio text. Advanced patient data is hidden below.';
     }
 
-    const audioLabel = findLabel(grid, 'Text for audio') || findLabel(grid, 'Text spoken by audio');
-    if (audioLabel) audioLabel.textContent = 'Text spoken by audio';
-
-    const scenarioLabel = findLabel(grid, 'Scenario / intro text');
-    if (scenarioLabel) scenarioLabel.textContent = 'Scenario shown on intro slide';
-
-    const introAudioLabel = findLabel(grid, 'Intro audio text');
-    if (introAudioLabel) introAudioLabel.textContent = 'Intro audio text';
+    relabel('editorScenario', 'Scenario shown on intro slide');
+    relabel('editorAudioText', 'Text spoken by audio');
+    relabel('editorSlideText', 'Text shown on slide');
 
     const audioText = document.getElementById('editorAudioText');
-    if (audioText) ensureCopyButton(audioText);
+    const audioGroup = ensureAudioGroup(audioText);
 
     if (!grid.dataset.simplified) {
       grid.dataset.simplified = '1';
@@ -118,26 +140,25 @@
       advanced.innerHTML = '<summary>Advanced settings</summary><div class="studio-advanced-grid"></div>';
       const advancedGrid = advanced.querySelector('.studio-advanced-grid');
 
-      const basicPairs = [
-        pair(grid, 'Slide'),
-        pair(grid, 'Audio file'),
-        pair(grid, 'Speaker'),
-        pair(grid, 'Text shown on slide'),
-        pair(grid, 'Text spoken by audio'),
-        pair(grid, 'Preview')
-      ];
-      const advancedPairs = [
-        pair(grid, 'Patient'),
-        pair(grid, 'Name'),
-        pair(grid, 'Course / Week'),
-        pair(grid, 'OBE metadata JSON'),
-        pair(grid, 'Scenario shown on intro slide'),
-        pair(grid, 'Intro audio text'),
-        pair(grid, 'Vital signs JSON')
-      ];
+      appendField(basic, fieldById('editorSlide', 'Slide'));
+      appendField(basic, fieldById('editorAudioFile', 'Audio file'));
+      appendField(basic, fieldById('editorSpeaker', 'Speaker'));
+      appendField(basic, fieldById('editorSlideText', 'Text shown on slide'));
+      const audioLabel = relabel('editorAudioText', 'Text spoken by audio');
+      if (audioLabel && audioGroup) {
+        basic.appendChild(audioLabel);
+        basic.appendChild(audioGroup);
+      }
+      appendField(basic, fieldById('editorPreview', 'Preview'));
 
-      basicPairs.forEach(item => appendPair(basic, item));
-      advancedPairs.forEach(item => appendPair(advancedGrid, item));
+      appendField(advancedGrid, fieldById('editorPatient', 'Patient'));
+      appendField(advancedGrid, fieldById('editorName', 'Name'));
+      appendField(advancedGrid, fieldById('editorCourse', 'Course / Week'));
+      appendField(advancedGrid, fieldById('editorObe', 'OBE metadata JSON'));
+      appendField(advancedGrid, fieldById('editorScenario', 'Scenario shown on intro slide'));
+      appendField(advancedGrid, fieldById('editorIntroAudio', 'Intro audio text'));
+      appendField(advancedGrid, fieldById('editorVitals', 'Vital signs JSON'));
+
       grid.replaceChildren(basic, advanced);
     }
 
@@ -156,10 +177,11 @@
       .studio-advanced-fields{margin-top:16px;border:1px solid #e2e8f0;border-radius:16px;background:#f8fafc;padding:10px;}
       .studio-advanced-fields summary{cursor:pointer;font-weight:900;color:#475569;}
       .studio-advanced-grid{margin-top:10px;}
-      .studio-audio-helper{margin:2px 0 0;}
-      .studio-copy-audio{border:0;border-radius:999px;background:#0f4c81;color:#fff;font-weight:900;padding:9px 12px;cursor:pointer;}
+      .studio-audio-group{display:grid;grid-template-columns:1fr;gap:8px;}
+      .studio-copy-audio{border:0;border-radius:999px;background:#0f4c81;color:#fff;font-weight:900;padding:9px 12px;cursor:pointer;justify-self:start;}
       .studio-copy-audio:disabled{opacity:.45;cursor:not-allowed;}
       .editor.studio-mode #editorAudioFile{user-select:text;}
+      .editor.studio-mode #editorSlideText:not([readonly]),.editor.studio-mode #editorAudioText:not([readonly]){background:#fff!important;}
     `;
     document.head.appendChild(style);
   }
@@ -167,6 +189,7 @@
   function afterRender() {
     injectSimplifierStyles();
     setTimeout(simplifyInspector, 0);
+    setTimeout(simplifyInspector, 80);
   }
 
   const wrap = (name) => {
@@ -183,10 +206,7 @@
 
   ['openEditor','loadPatientIntoEditor','populateSlideSelect','loadSlideIntoEditor','markEditorDirty','changeEditorPatient','changeEditorSlide','previousEditorSlide','nextEditorSlide','addSlideAfterCurrent','deleteCurrentSlide'].forEach(wrap);
 
-  window.copyCleanSlideTextToAudio = () => {
-    const button = document.getElementById('copyCleanSlideTextToAudio');
-    if (button) button.click();
-  };
+  window.copyCleanSlideTextToAudio = () => document.getElementById('copyCleanSlideTextToAudio')?.click();
 
   injectSimplifierStyles();
   afterRender();
