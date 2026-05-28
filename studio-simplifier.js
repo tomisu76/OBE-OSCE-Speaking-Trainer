@@ -1,5 +1,5 @@
 (() => {
-  const VERSION = 'studio-simplifier-20260528b';
+  const VERSION = 'studio-simplifier-20260528c';
 
   function currentSlideIndex() {
     const selectValue = document.getElementById('editorSlide')?.value;
@@ -18,24 +18,34 @@
       .trim();
   }
 
-  function labelBefore(control) {
+  function fieldRoot(control) {
     if (!control) return null;
-    let node = control.previousElementSibling;
+    const nav = control.closest?.('.slide-nav');
+    if (nav?.contains(control)) return nav;
+    if (control.id === 'editorAudioFile' && control.parentElement) return control.parentElement;
+    return control;
+  }
+
+  function labelBeforeRoot(root) {
+    if (!root) return null;
+    let node = root.previousElementSibling;
     while (node && node.tagName !== 'LABEL') node = node.previousElementSibling;
-    return node;
+    return node || null;
   }
 
   function relabel(id, text) {
-    const label = labelBefore(document.getElementById(id));
+    const control = document.getElementById(id);
+    const label = labelBeforeRoot(fieldRoot(control));
     if (label) label.textContent = text;
     return label;
   }
 
   function fieldById(id, text) {
     const control = document.getElementById(id);
+    const root = fieldRoot(control);
     const label = relabel(id, text);
-    if (!control || !label) return null;
-    return { label, control };
+    if (!control || !root || !label) return null;
+    return { label, control: root };
   }
 
   function appendField(section, item) {
@@ -112,6 +122,12 @@
     const inspector = document.getElementById('studioInspector');
     const grid = inspector?.querySelector('.editor-grid');
     if (!inspector || !grid) return;
+
+    const requiredIds = ['editorSlide', 'editorAudioFile', 'editorSpeaker', 'editorSlideText', 'editorAudioText'];
+    if (requiredIds.some(id => !document.getElementById(id))) {
+      console.warn('Studio simplifier skipped because core editor fields are missing. Reload the page to rebuild the editor DOM.');
+      return;
+    }
 
     const head = inspector.closest('.studio-right')?.querySelector('.studio-panel-head');
     if (head) {
