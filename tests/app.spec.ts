@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test';
 
+const appVariant = (process.env.APP_VARIANT || 'trainer').toLowerCase();
+const editorTest = appVariant === 'editor' ? test : test.skip;
+const trainerTest = appVariant === 'editor' ? test.skip : test;
+
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
     (window as any).__audioCalls = [];
@@ -31,7 +35,7 @@ test.beforeEach(async ({ page }) => {
 
 test('app is not blank and heading is visible', async ({ page }) => {
   await expect(page.locator('body')).not.toBeEmpty();
-  await expect(page.getByRole('heading', { name: 'OBE OSCE Speaking Trainer' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /OBE OSCE Speaking (Trainer|Editor)/ })).toBeVisible();
 });
 
 test('patient cards are visible', async ({ page }) => {
@@ -48,8 +52,21 @@ test('patient content stays professional', async ({ page }) => {
   expect(text.toLowerCase()).not.toContain('hi you');
 });
 
-test('required script tags are present', async ({ page }) => {
+test('audio fallback script is present', async ({ page }) => {
   await expect(page.locator('script[src*="audio-fallback.js"]')).toHaveCount(1);
+});
+
+trainerTest('trainer variant has no editor UI or editor scripts', async ({ page }) => {
+  await expect(page.getByRole('button', { name: /Admin editor|Open editor/ })).toHaveCount(0);
+  await expect(page.locator('#editor')).toHaveCount(0);
+  await expect(page.locator('script[src*="editor.js"]')).toHaveCount(0);
+  await expect(page.locator('script[src*="studio-audio-player.js"]')).toHaveCount(0);
+});
+
+editorTest('editor variant has editor UI and editor scripts', async ({ page }) => {
+  await expect(page.getByRole('button', { name: /Admin editor|Open editor/ })).toBeVisible();
+  await expect(page.locator('#editor')).toHaveCount(1);
+  await expect(page.locator('script[src*="editor.js"]')).toHaveCount(1);
   await expect(page.locator('script[src*="studio-audio-player.js"]')).toHaveCount(1);
 });
 
@@ -65,8 +82,8 @@ test('student Play Audio on non-intro slide does not call intro.wav', async ({ p
   expect(latest).not.toContain('intro.wav');
 });
 
-test('editor Play this slide audio follows selected #editorSlide value', async ({ page }) => {
-  await page.getByRole('button', { name: 'Admin editor' }).click();
+editorTest('editor Play this slide audio follows selected #editorSlide value', async ({ page }) => {
+  await page.getByRole('button', { name: /Admin editor|Open editor/ }).click();
   await expect(page.locator('#editor')).toHaveClass(/show/);
   await expect(page.locator('.studio-title')).toContainText('OBE OSCE Slide Studio');
   await expect(page.locator('#editorSlide')).toBeVisible();
