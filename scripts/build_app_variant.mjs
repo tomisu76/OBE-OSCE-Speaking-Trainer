@@ -5,6 +5,8 @@ const root = process.cwd();
 const out = path.join(root, 'dist');
 const variant = (process.env.APP_VARIANT || 'trainer').toLowerCase();
 const editor = variant === 'editor';
+const simplifierVersion = 'studio-simplifier-20260528c';
+const simplifierTag = '<scr' + `ipt src="studio-simplifier.js?v=${simplifierVersion}"></scr` + 'ipt>';
 
 await fs.rm(out, { recursive: true, force: true });
 await fs.mkdir(out, { recursive: true });
@@ -24,9 +26,9 @@ if (!editor) {
   html = html.replace('<h1>OBE OSCE Speaking Trainer</h1>', '<h1>OBE OSCE Speaking Editor</h1>');
   html = html.replace('Choose a patient. Practise English for nursing OSCE communication with full-screen slides and audio.', 'Edit patient slides, audio text, and OSCE metadata.');
   if (!html.includes('studio-simplifier.js')) {
-    html = html.replace('</body>', '  <script src="studio-simplifier.js?v=studio-simplifier-20260528b"></script>\n</body>');
+    html = html.replace('</body>', `  ${simplifierTag}\n</body>`);
   } else {
-    html = html.replace(/studio-simplifier\.js\?v=[^"']+/g, 'studio-simplifier.js?v=studio-simplifier-20260528b');
+    html = html.replace(/studio-simplifier\.js\?v=[^"']+/g, `studio-simplifier.js?v=${simplifierVersion}`);
   }
 }
 
