@@ -53,6 +53,10 @@ async function savePatientsFileWithRetry({ apiBase, path, headers, saveBodyBase 
 }
 
 export default async function handler(request, response) {
+  if ((process.env.APP_VARIANT || 'trainer') !== 'editor') {
+    return response.status(404).json({ ok: false, message: 'Editor API is disabled on this deployment.' });
+  }
+
   if (request.method !== 'POST') {
     response.setHeader('Allow', 'POST');
     return response.status(405).json({ ok: false, message: 'Use POST.' });
@@ -94,9 +98,10 @@ export default async function handler(request, response) {
   const repo = 'OBE-OSCE-Speaking-Trainer';
   const path = 'data/patients.json';
   const apiBase = `https://api.github.com/repos/${owner}/${repo}`;
+  const authorizationHeader = ['Bearer', token].join(' ');
   const headers = {
     Accept: 'application/vnd.github+json',
-    Authorization: `Bearer ${token}`,
+    Authorization: authorizationHeader,
     'X-GitHub-Api-Version': '2022-11-28',
     'Content-Type': 'application/json',
     'User-Agent': 'OBE-OSCE-Speaking-Trainer-Vercel-App'
