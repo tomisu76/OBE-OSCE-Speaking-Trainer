@@ -39,6 +39,15 @@ test('patient cards are visible', async ({ page }) => {
   await expect(page.locator('.patient-tab').first()).toBeVisible();
 });
 
+test('patient content stays professional', async ({ page }) => {
+  const data = await page.request.get('/data/patients.json');
+  expect(data.ok()).toBeTruthy();
+  const text = await data.text();
+  expect(text.toLowerCase()).not.toContain('shit');
+  expect(text.toLowerCase()).not.toContain('antigravity');
+  expect(text.toLowerCase()).not.toContain('hi you');
+});
+
 test('required script tags are present', async ({ page }) => {
   await expect(page.locator('script[src*="audio-fallback.js"]')).toHaveCount(1);
   await expect(page.locator('script[src*="studio-audio-player.js"]')).toHaveCount(1);
