@@ -12,8 +12,8 @@
     ],
     "skill": "Taking history, vital signs, and giving directions",
     "assessment": "Mini-OSCE speaking practice",
-    "scenario": "Broken arm after an accident three hours ago.",
-    "introAudioText": "Patient 1. John White. Broken arm after an accident three hours ago. motobike",
+    "scenario": "Broken arm after a motorcycle accident three hours ago.",
+    "introAudioText": "Patient 1. John White. Broken arm after a motorcycle accident three hours ago.",
     "vitals": [
       [
         "Blood pressure",
@@ -51,48 +51,24 @@
         "id": "nurse-greeting",
         "speaker": "nurse",
         "label": "Nurse greeting",
-        "text": "Good morning. My name is Anna. I am a practical nurse. Shit will be shit.",
-        "audioText": "Good morning. My name is Anna. I am a practical nurse.Shit will be shit.",
+        "text": "Good morning. My name is _____. I am a practical nurse.",
+        "audioText": "Good morning. My name is blank. I am a practical nurse.",
         "audioFile": "nurse-greeting.wav"
-      },
-      {
-        "id": "new-slide-3",
-        "speaker": "nurse",
-        "label": "New slide",
-        "text": "hi",
-        "audioText": "hi",
-        "audioFile": "new-slide-3.wav"
-      },
-      {
-        "id": "new-slide",
-        "speaker": "patient",
-        "label": "New slide",
-        "text": "hi you shit, my name is michal black",
-        "audioText": "hi you shit, my name is michal black",
-        "audioFile": "new-slide.wav"
-      },
-      {
-        "id": "new-slide-2",
-        "speaker": "patient",
-        "label": "New slide",
-        "text": "bye",
-        "audioText": "bye",
-        "audioFile": "new-slide-2.wav"
       },
       {
         "id": "patient-greeting",
         "speaker": "patient",
         "label": "Patient greeting",
-        "text": "Good morning. may i see doctor please? Simply return to your Antigravity conversation, and the browser will be used automatically when appropriate.",
-        "audioText": "you are shit and shit will be shit",
+        "text": "Good morning.",
+        "audioText": "Good morning.",
         "audioFile": "patient-greeting.wav"
       },
       {
         "id": "ask-name",
         "speaker": "nurse",
         "label": "Ask patient name",
-        "text": "May I ask your name, please? or should i go",
-        "audioText": "May I ask your name, please? or should i go",
+        "text": "May I ask your name, please?",
+        "audioText": "May I ask your name, please?",
         "audioFile": "ask-name.wav"
       },
       {
@@ -219,7 +195,7 @@
   },
   {
     "id": 2,
-    "name": "Thomas Blake Blak",
+    "name": "Thomas Blake",
     "audioFolder": "patient-2-thomas-blake",
     "introAudioFile": "intro.wav",
     "course": "English for Professional Nursing",
