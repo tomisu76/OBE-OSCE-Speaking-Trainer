@@ -1,2 +1,2 @@
-Trigger Generate Kokoro Audio workflow after fixing GitHub SUPABASE_URL secret.
-Timestamp: 2026-05-28T03:35:00Z
+Trigger Generate Kokoro Audio workflow now that Supabase URL secret has been corrected.
+Timestamp: 2026-05-28T03:45:00Z
